@@ -14,7 +14,10 @@ const UserSchema = new mongoose.Schema( {
         type: String,
         required: true,
     },
-    phone: String,
+    phone: {
+        countryCode: String,
+        number: String
+    },
     email: {
         type: String,
         required: true,
