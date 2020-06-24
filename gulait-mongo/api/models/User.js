@@ -35,24 +35,49 @@ const UserSchema = new mongoose.Schema( {
             name: String,
             products: [
                 {
-                    productId: ObjectId,
-                    variationId: ObjectId
+                    productId: mongoose.ObjectId,
+                    variationId: mongoose.ObjectId
                 }
             ]
         }
     ],
-    cart: [
+    cart: {
+        products: [
+            {
+                productId: mongoose.ObjectId,
+                variationId: mongoose.ObjectId
+            }
+        ]
+    },
+    roles: [
         {
-
-            products: [
+            name: String,
+            privileges: [
                 {
-                    productId: ObjectId,
-                    variationId: ObjectId
+                    privilegeId: mongoose.ObjectId,
+                    privilegeName: String 
                 }
             ]
         }
+    ],
+    employingStores: [
+        {
+            storeId: mongoose.ObjectId,
+            storeName: String
+        }
+    ],
+    addresses: [
+        {
+            name: String,
+            status: Boolean,
+            address1: String,
+            address2: String,
+            city: String,
+            province: String,
+            country: String,
+            postcode: String
+        }
     ]
-
 
 } );
 
