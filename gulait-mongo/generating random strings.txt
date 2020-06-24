@@ -1,0 +1,6 @@
+//enter this code in the command line
+node //and press enter, this will allow you run JS in the command
+
+//next run this command
+//every time this command runs, it generates another random string
+require('crypto').randomBytes(64).toString('hex')

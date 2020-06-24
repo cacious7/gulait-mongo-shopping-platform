@@ -1,0 +1,39 @@
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6ImNhY2lvdXMiLCJpYXQiOjE1OTIxODI3NDcsImV4cCI6MTU5MjE4Mjc3N30.RzjtDuNcLkGktkOrwF7PN3qCzj7QlxxZrdaFkQvCV_Q
+###
+
+POST http://localhost:3000/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6ImNhY2lvdXMiLCJpYXQiOjE1OTIxODI2ODV9.Ff9O6ShxcklkitlQocaIhF8PSvfyznaOexNetJDEr0U"
+}
+
+###
+
+DELETE http://localhost:3000/logout
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6ImNhY2lvdXMiLCJpYXQiOjE1OTIyNTgyNjN9.93p83Gt5YKhh4I8At-w822HE-JX9JSZnt4aJwgg_Q0Q"
+}
+
+###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "userName": "cacious",
+    "password": "Cacnga@153"
+}
+
+
+### REGISTER A USER
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "userName": "cacious",
+    "password": "Cacnga@153."
+}
