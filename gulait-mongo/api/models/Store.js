@@ -1,5 +1,8 @@
 const mongoose = require( "mongoose" );
 
+/**
+ * Store document model to save platform Store details
+ */
 const StoreSchema = new mongoose.Schema( {
     name: {
         type: String,
@@ -110,3 +113,5 @@ const StoreSchema = new mongoose.Schema( {
     barnerUrl: String
 
 } );
+
+module.exports = mongoose.model( 'Store', StoreSchema );
