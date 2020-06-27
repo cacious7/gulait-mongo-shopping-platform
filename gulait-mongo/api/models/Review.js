@@ -1,7 +1,7 @@
 const mongoose = require( "mongoose" );
 
 /**
- * Review document model
+ * Review document model to store product reviews
  */
 const ReviewSchema = mongoose.Schema( {
     userId: {

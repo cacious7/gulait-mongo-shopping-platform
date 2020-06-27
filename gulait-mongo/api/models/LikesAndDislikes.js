@@ -1,5 +1,8 @@
 const mongoose = require( 'mongoose' );
 
+/**
+ * LikesAndDislikes document model to store product likes and dislikes
+ */
 const LikesAndDislikesSchema = mongoose.Schema( {
     userId: {
         type: mongoose.ObjectId,

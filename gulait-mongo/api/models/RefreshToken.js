@@ -1,7 +1,7 @@
 const mongoose = require( 'mongoose' );
 
 /**
- * RefreshToken document model
+ * RefreshToken document model to store JWT refresh tokens
  */
 const RefreshTokenSchema = mongoose.Schema( {
     userName: {
