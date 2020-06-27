@@ -70,12 +70,17 @@ const ProductSchema = mongoose.Schema( {
             stockQty: {
                 type: Number
             },
-            customAttributes: [
+            attributes: [
                 {
-                    name: {
+                    attributeId: {
+                        type: mongoose.ObjectId,
+                    },
+                    attributeType: {
                         type: String
                     },
-                    values
+                    attributeValue: {
+                        type: String
+                    }
                 }
             ]
         }
