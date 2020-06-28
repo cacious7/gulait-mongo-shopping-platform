@@ -84,5 +84,85 @@ const ProductSchema = mongoose.Schema( {
                 }
             ]
         }
-    ]
+    ],
+    discountType: {
+        type: String
+    },
+    discount: {
+        type: Number
+    },
+    discountMinOrder: {
+        type: Number
+    },
+    discountStartDate: {
+        type: Date
+    },
+    discountEndDate: {
+        type: Date
+    },
+    inStock: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    enableStockManagement: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
+    stockQty: {
+        type: Number
+    },
+    shippingClassId: {
+        type: mongoose.ObjectId
+    },
+    shortDescription: {
+        type: String
+    },
+    longDescription: {
+        type: String
+    },
+    upSells: [
+        {
+            productId: mongoose.ObjectId
+        }
+    ],
+    crossSells: [
+        {
+            productId: mongoose.ObjectId
+        }
+    ],
+    status: {
+        type: String,
+        required: true,
+        default: offline
+    },
+    visibilit: {
+        platformVisibility: String,
+        city: [
+            {
+                id: mongoose.ObjectId,
+                name: String,
+                visible: Boolean
+            }
+        ],
+        province: [
+            {
+                id: mongoose.ObjectId,
+                name: String,
+                visible: Boolean
+            }
+        ],
+        country: [
+            {
+                id: mongoose.ObjectId,
+                name: String,
+                visible: Boolean
+            }
+        ]
+    },
+    storeId: {
+        type: mongoose.ObjectId,
+        required: true
+    }
 } );
