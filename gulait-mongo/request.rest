@@ -34,10 +34,24 @@ POST http://localhost:3000/register/buyer
 Content-Type: application/json
 
 {
-    "userName": "cacious",
+    "userName": "cacious8",
     "firstName": "cacious",
     "lastName": "siamunyanga",
-    "email": "cacious@hotmail.com",
+    "email": "cacious8@hotmail.com",
+    "password": "Cacnga@153."
+}
+
+### REGISTER A SELLER
+POST http://localhost:3000/register/seller
+Content-Type: application/json
+
+{
+    "userName": "cacious10",
+    "firstName": "cacious",
+    "lastName": "siamunyanga",
+    "userEmail": "cacious10@hotmail.com",
+    "storeEmail": "store@hotmail.com",
+    "storeName": "Gulait",
     "password": "Cacnga@153."
 }
 
