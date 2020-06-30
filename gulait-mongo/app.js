@@ -6,7 +6,6 @@ const bodyParser = require( 'body-parser' );
 const morgan_log = require( 'morgan' );
 
 //IMPORT ROUTES
-const postRouter = require( './api/routes/posts' );
 const homeRouter = require( './api/routes/home' );
 const loginRouter = require( './api/routes/login' );
 const registerRouter = require( './api/routes/register' );
@@ -55,15 +54,11 @@ app.use( ( req, res, next ) => {
 
 //ROUTING 
 app.get( '/', ( req, res ) => { res.redirect( '/home' ) } );
-
 app.use( '/home', homeRouter );
-app.use( '/posts', postRouter );
 app.use( '/login', loginRouter );
 app.use( '/register', registerRouter );
 app.use( '/token', refreshToken );
 app.use( '/logout', logoutRouter );
-
-
 
 //ERROR HANDLING
 

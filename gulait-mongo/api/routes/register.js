@@ -3,13 +3,21 @@ const User = require( '../models/User' );
 const bcrypt = require( 'bcrypt' );
 const joi = require( 'joi' );
 
-//REGISTER A USER
-router.post( '/', async ( req, res ) => {
+/**
+ * REGISTERS A USER
+ * @param {JSON} req contains request data fromthe user
+ * @param {JSON} res constains response data sent to the user
+ * @return {JSON} the res object is sent back to user
+ */
+router.post( '/buyer', async ( req, res ) => {
     console.log( req.body );
 
     //Validate the user input
     const validationSchema = joi.object().keys( { 
-        userName: joi.string().min( 5 ).max( 20 ).required(),
+        userName: joi.string().min( 3 ).max( 20 ).required(),
+        fistName: joi.string().max( 30 ).required(),
+        lastName: joi.string().max( 30 ).required(),
+        email: joi.string().email().required(),
         password: joi.string().min( 6 ).max( 15 ).required()
      } );
 
@@ -29,7 +37,11 @@ router.post( '/', async ( req, res ) => {
 
             const user = User( {
                 userName: req.body.userName,
-                password: hashedPassword
+                firstName: req.body.fistName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                password: hashedPassword,
+                roles: [ { name: "buyer" } ]
             } );
 
             const savedUser = await user.save()

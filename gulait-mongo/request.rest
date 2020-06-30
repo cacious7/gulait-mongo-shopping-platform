@@ -30,10 +30,13 @@ Content-Type: application/json
 
 
 ### REGISTER A USER
-POST http://localhost:3000/register
+POST http://localhost:3000/register/buyer
 Content-Type: application/json
 
 {
     "userName": "cacious",
-    "password": "Cacnga@153."
+    "firstName": "cacious",
+    "lastName": "siamunyanga",
+    "email": "cacious@hotmail.com",
+    "password": "Cacnga@153.",
 }
