@@ -10,12 +10,10 @@ const joi = require( 'joi' );
  * @return {JSON} the res object is sent back to user
  */
 router.post( '/buyer', async ( req, res ) => {
-    console.log( req.body );
-
     //Validate the user input
     const validationSchema = joi.object().keys( { 
         userName: joi.string().min( 3 ).max( 20 ).required(),
-        fistName: joi.string().max( 30 ).required(),
+        firstName: joi.string().max( 30 ).required(),
         lastName: joi.string().max( 30 ).required(),
         email: joi.string().email().required(),
         password: joi.string().min( 6 ).max( 15 ).required()
@@ -33,11 +31,10 @@ router.post( '/buyer', async ( req, res ) => {
             //second param is the salt rounds/ salt creator, the higher the num, 
             //the harder the salt is to guess and the longer it takes to create
             const hashedPassword = await bcrypt.hash( req.body.password, 10 ); 
-            console.log( hashedPassword );
 
             const user = User( {
                 userName: req.body.userName,
-                firstName: req.body.fistName,
+                firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashedPassword,
@@ -45,9 +42,12 @@ router.post( '/buyer', async ( req, res ) => {
             } );
 
             const savedUser = await user.save()
-            res.status( 200 ).json( { message: 'success', data: savedUser });
+            res.status( 200 ).json( { 
+                message: 'Registration successfull', 
+                data: { user: savedUser.userName } 
+            });
         } catch (err) {
-            res.json( { message: 'ERROR', data: err } );
+            res.json( { message: 'ERROR', data: err.toString() } );
         }
     }
 } );

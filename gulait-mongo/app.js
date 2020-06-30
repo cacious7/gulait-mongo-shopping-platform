@@ -15,7 +15,7 @@ const logoutRouter = require( './api/routes/logout' );
 //DATABASE CONNECTION
 mongoose.connect(
     process.env.DBCONNECTION, //db connect url - only this is mandatory and is hidden in the .env file. Dont upload the .env file to github
-    { useNewUrlParser: true, useUnifiedTopology: true }, //use new parser for the sake of future versions
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }, //solve mongoose deprecation warnings
     () => console.log( 'connection status in app.js = ' + mongoose.connection.readyState ) //on success function
 ).catch( err => {
     console.log( err );
@@ -77,6 +77,7 @@ app.use( ( error, req, res, next ) => {
     //if the error status isnt already set, we shall set it to 500 as default
     //server error status code
     res.status( error.status || 500 );
+    console.log( error );
     res.json( {
         error : {
             message : error.message,

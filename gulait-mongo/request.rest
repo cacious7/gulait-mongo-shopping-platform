@@ -38,5 +38,8 @@ Content-Type: application/json
     "firstName": "cacious",
     "lastName": "siamunyanga",
     "email": "cacious@hotmail.com",
-    "password": "Cacnga@153.",
+    "password": "Cacnga@153."
 }
+
+###
+GET http://localhost:3000/
