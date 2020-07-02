@@ -60,8 +60,12 @@ router.post( '/buyer', async ( req, res ) => {
  * @return {JSON} the res object is sent back to user
  */
 router.post( '/seller', async ( req, res ) => {
-    if ( !req.body.userEmail && !req.body.storeEmail ) return res.json( { message: 'Error', Error: 'Both userEmail and storeEmail cannot be null. Atleast one is required' } );
-    console.log( 'before validate here' );
+    if ( !req.body.userEmail && !req.body.storeEmail ) 
+    return res.json( { 
+        message: 'Error', 
+        Error: 'Both userEmail and storeEmail cannot be null. Atleast one is required' 
+    } );
+    
     const validationSchema = joi.object().keys( {
         userName: joi.string().trim().min( 3 ).max( 20 ).required(),
         firstName: joi.string().trim().max( 30 ).required(),
@@ -73,35 +77,30 @@ router.post( '/seller', async ( req, res ) => {
     } );
 
     joi.validate( req.body, validationSchema, ( err, result ) => {
-        console.log( 'joi here' );
         if( err ) return res.json( { message:'ERROR', data: err } );
     } );
 
     //universal email
-    const email = null;
-    console.log( 'after validate here' );
+    let email = null;
+
     //if both userEmail and storeEmail are unset return an error
-    if( ( !req.body.userEmail && !req.body.storeEmail ) || ( req.body.userEmail.trim() == '' && req.body.storeEmail.trim() == '' ) ){ 
-        console.log( 'both here' );
+    if( ( !req.body.userEmail && !req.body.storeEmail ) || ( req.body.userEmail == '' && req.body.storeEmail == '' ) ){ 
         return res.json( {
             message: 'Error', 
             Error: 'Atleast one of userEmail or storeEmail is required' 
         } );
     } 
     //if only one of them has a value then set email to the set email
-    else if( ( !req.body.userEmail || !req.body.storeEmail ) || ( req.body.userEmail.trim() == '' || req.body.storeEmail.trim() == '' ) ){
-        console.log( 'Either 1 here' );
+    else if( ( !req.body.userEmail || !req.body.storeEmail ) || ( req.body.userEmail == '' || req.body.storeEmail == '' ) ){
         //if userEmail is set, set it equal to email
-        if( ( req.body.userEmail == true && req.body.userEmail != '' ) && req.body.storeEmail == false ){
+        if( ( req.body.userEmail && req.body.userEmail != '' ) && ( !req.body.storeEmail || req.body.storeEmail == '' ) ){
             email = req.body.userEmail;
         } 
         //if storeEmail is set, set it equal to email
-        else if( ( req.body.storeEmail == true && req.body.storeEmail != '' ) && req.body.userEmail == false ){
-            email = req.body.storeEmail
+        else if( ( req.body.storeEmail && req.body.storeEmail != '' ) && ( !req.body.userEmail || req.body.userEmail == '' ) ){
+            email = req.body.storeEmail;
         }
     }// if none of these conditions are true, then both variables are set
-
-    console.log( 'both set before try here' );
 
     //if email = null, then both emails have been set
     //make sure no response has been sent back before proceeding

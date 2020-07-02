@@ -12,11 +12,7 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3000/logout
-Content-Type: application/json
-
-{
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6ImNhY2lvdXMiLCJpYXQiOjE1OTIyNTgyNjN9.93p83Gt5YKhh4I8At-w822HE-JX9JSZnt4aJwgg_Q0Q"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6Im1hcmsiLCJpYXQiOjE1OTM2MTY5MjksImV4cCI6MTU5MzYyMDUyOX0.TF02e-hH6LOH015Z0e1M_u_ssGemBVuUiH1wZzzM9BU
 
 ###
 
@@ -24,8 +20,8 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "userName": "cacious",
-    "password": "Cacnga@153"
+    "userName": "mark",
+    "password": "Cacnga@153."
 }
 
 
@@ -46,12 +42,11 @@ POST http://localhost:3000/register/seller
 Content-Type: application/json
 
 {
-    "userName": "cacious10",
-    "firstName": "cacious",
-    "lastName": "siamunyanga",
-    "userEmail": "cacious10@hotmail.com",
-    "storeEmail": "store@hotmail.com",
-    "storeName": "Gulait",
+    "userName": "mark",
+    "firstName": "markus",
+    "lastName": "phiri",
+    "userEmail": "mark@outlook.com",
+    "storeName": "markusShoes",
     "password": "Cacnga@153."
 }
 
