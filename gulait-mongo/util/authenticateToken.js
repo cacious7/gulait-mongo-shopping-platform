@@ -20,9 +20,9 @@ function authenticateToken( token, tokenType ){
             case 'access token':
                 jwt.verify( token, process.env.JWT_ACCESS_TOKEN_SECRET, ( err, payload ) => {
                     if( err ){
-                        result = [ 'ERROR', 'Token is invalid' ];
+                        result = [ 'ERROR', err.toString() ];
                     }else{
-                        result = [ 'Success', err.toString() ]; 
+                        result = [ 'Success', payload.userData ]; 
                     }
                     
                 } );

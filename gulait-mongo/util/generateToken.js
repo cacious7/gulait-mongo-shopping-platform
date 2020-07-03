@@ -22,7 +22,7 @@ async function generateToken( type, userData ){
 
         try {
             const savedRefreshToken = await refreshTokenModel.save();
-            return  savedRefreshToken;
+            return  savedRefreshToken.token;
         } catch (err) {
             return null;
         }

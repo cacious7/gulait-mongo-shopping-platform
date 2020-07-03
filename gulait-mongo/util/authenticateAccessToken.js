@@ -1,14 +1,11 @@
 const jwt = require( 'jsonwebtoken' );
 const authenticateToken = require( './authenticateToken' );
+const getBearerToken = require( './getBearerToken' );
 require( 'dotenv/config' );
 
 /**Authenticate a jwt access token */
 function authenticateAccessToken( req, res, next ){
-    //the token is stored in the request header's bearer attribute
-    //the attribute is seperated from its value(token) by a space in the form 
-    // Bearer token
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; //this code returns authHeader.split(' ')[1] if authHeader returns true
+    const token = getBearerToken( req );
 
     const result = authenticateToken( token, 'ACCESS TOKEN' );
     switch( result[0].toLowerCase() ){

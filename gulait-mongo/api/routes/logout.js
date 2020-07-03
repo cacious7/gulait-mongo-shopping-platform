@@ -1,6 +1,7 @@
 const router = require( 'express' ).Router();
 const RefreshToken = require( '../models/RefreshToken' );
 const authenticateRefreshToken = require( '../../util/authenticateRefreshToken' );
+const joi = require( 'joi' );
 
 /**
  * takes a token, verifies/authenticates it and
@@ -8,6 +9,18 @@ const authenticateRefreshToken = require( '../../util/authenticateRefreshToken' 
  * @param {JWT} token
  */
 router.delete( '/', authenticateRefreshToken, async ( req, res ) => {
+    const validationSchema = new joi.object().keys( {
+        userName: joi.string().required()
+    } );
+
+    joi.validate( req.body, validationSchema, ( err, results ) => {
+        if( err ) return res.status( 401 ).json( {
+            message: 'Error',
+            data: err.toString()
+        } );
+    } );
+
+
     try {
         const returnedRefreshToken = await RefreshToken.find( { userName: req.body.userName } );
         console.log( `logout here userName = ${ req.body.userName }` );
