@@ -61,9 +61,22 @@ router.post( '/', async ( req, res ) => {
                     //const { userName, password } = user;
                     console.log( req.body.password + " , " + user.userName );
                     if( await bcrypt.compare( req.body.password, user.password ) ){
+                        let tokenPayload = null;
+                        if( user.roles[0].name.toLowerCase() === 'buyer' ){
+                            tokenPayload = { 
+                                userName: user.userName,
+                                roles: user.roles
+                            };
+                        } else if( user.roles[0].name.toLowerCase() === 'seller' ){
+                            tokenPayload = { 
+                                userName: user.userName,
+                                roles: user.roles,
+                                employingStores: user.employingStores
+                            };
+                        }
                         
-                        const accessToken = await generateToken( 'access token', user.userName );
-                        const refreshToken = await generateToken( 'refresh token', user.userName ); 
+                        const accessToken = await generateToken( 'access token', tokenPayload );
+                        const refreshToken = await generateToken( 'refresh token', tokenPayload ); 
                         res.status( 200 ).json( { message: 'successful login', accessToken: accessToken, refreshToken: refreshToken, role: user.roles } );
                     } else{
                         console.log ('Wrong login password');

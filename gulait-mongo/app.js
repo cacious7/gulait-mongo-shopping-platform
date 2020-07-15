@@ -11,6 +11,7 @@ const loginRouter = require( './api/routes/login' );
 const registerRouter = require( './api/routes/register' );
 const refreshToken = require( './api/routes/refreshToken' );
 const logoutRouter = require( './api/routes/logout' );
+const productRouter = require( './api/routes/product');
 
 //DATABASE CONNECTION
 mongoose.connect(
@@ -59,6 +60,7 @@ app.use( '/login', loginRouter );
 app.use( '/register', registerRouter );
 app.use( '/token', refreshToken );
 app.use( '/logout', logoutRouter );
+app.use( '/product', productRouter );
 
 //ERROR HANDLING
 

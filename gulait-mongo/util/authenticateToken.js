@@ -20,9 +20,9 @@ function authenticateToken( token, tokenType ){
             case 'access token':
                 jwt.verify( token, process.env.JWT_ACCESS_TOKEN_SECRET, ( err, payload ) => {
                     if( err ){
-                        result = [ 'ERROR', err.toString() ];
+                        result = { message: 'ERROR', data: err.toString() };
                     }else{
-                        result = [ 'Success', payload.userData ]; 
+                        result = { message: 'Success', data: payload.userData }; 
                     }
                     
                 } );
@@ -30,15 +30,15 @@ function authenticateToken( token, tokenType ){
             case 'refresh token':
                 jwt.verify( token, process.env.JWT_REFRESH_TOKEN_SECRET, ( err, payload ) => {
                     if( err ){
-                        result = [ 'ERROR', err.toString() ];
+                        result = { message: 'ERROR', data: err.toString() };
                     }else {
-                        result = [ 'Success', payload.userData ];
+                        result = { message: 'Success', data: payload.userData };
                     } 
                     
                 } );
                 break;
             default:
-                result = [ 'Error', 'Please provide a token type' ]
+                result = { message: 'Error', data: 'Please provide a token type' }
         }
 
         return result;
