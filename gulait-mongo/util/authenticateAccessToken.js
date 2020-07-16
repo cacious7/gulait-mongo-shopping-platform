@@ -8,13 +8,13 @@ function authenticateAccessToken( req, res, next ){
     const token = getBearerToken( req );
 
     const result = authenticateToken( token, 'ACCESS TOKEN' );
-    switch( result[0].toLowerCase() ){
+    switch( result.message.toLowerCase() ){
         case 'error':
             res.status( 401 ).json( { message: result.message, data: result.data } );
             break;
         case 'success':
             req.body.userName = result.data.userName;
-            req.body.role = result.data.roles;
+            req.body.roles = result.data.roles;
             if( result.data.employingStores ) {
                 req.body.employingStores = result.data.employingStores
             }

@@ -77,7 +77,7 @@ router.post( '/', async ( req, res ) => {
                         
                         const accessToken = await generateToken( 'access token', tokenPayload );
                         const refreshToken = await generateToken( 'refresh token', tokenPayload ); 
-                        res.status( 200 ).json( { message: 'successful login', accessToken: accessToken, refreshToken: refreshToken, role: user.roles } );
+                        res.status( 200 ).json( { message: 'successful login', accessToken: accessToken, refreshToken: refreshToken, role: user.roles[0].name } );
                     } else{
                         console.log ('Wrong login password');
                         res.json( { message: 'Couldn\'t find a user with these log in details' } );

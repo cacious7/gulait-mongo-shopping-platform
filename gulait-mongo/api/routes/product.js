@@ -1,4 +1,5 @@
 const router = require( 'express' ).Router();
+const mongoose = require( 'mongoose' );
 const joi = require( 'joi' );
 const Product = require( '../models/Product' );
 const crypto = require( 'crypto' );
@@ -9,7 +10,7 @@ const authenticateAccessToken = require( '../../util/authenticateAccessToken' );
  * The simplest version of a product only has a 'name' and 'productType' as required input from the user
  */
 router.post( '/', authenticateAccessToken, ( req, res ) => {
-    if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
+    //if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
     
     //verify that a seller has access to a specific store
     //if( req.body.employingStores
@@ -37,10 +38,10 @@ router.post( '/', authenticateAccessToken, ( req, res ) => {
         crossSells: joi.array(),
         status: joi.string(),
         visibility: joi.object(),
-        storeId: joi.sting().required(),
+        storeId: joi.string().required(),
         userName: joi.string().required(),
         roles: joi.array().required(),
-        employingStores: joi.array()
+        employingStores: joi.array() 
     } );
 
     //Validate user input
@@ -72,7 +73,7 @@ router.post( '/', authenticateAccessToken, ( req, res ) => {
         crossSells: req.body.crossSells,
         status: req.body.status,
         visibility: req.body.visibility,
-        storeId: req.body.storeId
+        storeId: mongoose.Types.ObjectId( req.body.storeId )
     } );
 
     product.save()

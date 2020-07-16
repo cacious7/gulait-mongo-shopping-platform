@@ -10,13 +10,13 @@ function authenticateRefreshToken( req, res, next ){
     const result = authenticateToken( token, 'REFRESH TOKEN' );
     console.log( `result = ${ result } ` );
 
-    switch( result[0].toLowerCase() ){
+    switch( result.message.toLowerCase() ){
         case 'error':
             res.status( 401 ).json( { message: result.message, data: result.data } );
             break;
         case 'success':
             req.body.userName = result.data.userName;
-            req.body.role = result.data.roles;
+            req.body.roles = result.data.roles;
             next(); //go to the next function in the middleware
             break;
         default: 

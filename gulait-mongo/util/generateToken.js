@@ -16,15 +16,16 @@ async function generateToken( type, userData ){
         //to ensure that there are no tokens that can access our system forever
         const refreshToken = jwt.sign( { userData: userData }, process.env.JWT_REFRESH_TOKEN_SECRET, { expiresIn: "1D" } );
         const refreshTokenModel = new RefreshToken( {
-            userName: userData,
+            userName: userData.userName,
             token: refreshToken
         } );
-
+        
         try {
             const savedRefreshToken = await refreshTokenModel.save();
+            console.log( `saved refresh token = ${ savedRefreshToken }` );
             return  savedRefreshToken.token;
-        } catch (err) {
-            return null;
+        } catch ( err ) {
+            return err.toString();
         }
         
     }
