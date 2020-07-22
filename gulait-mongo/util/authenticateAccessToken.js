@@ -13,7 +13,6 @@ function authenticateAccessToken( req, res, next ){
             res.status( 401 ).json( { message: result.message, data: result.data } );
             break;
         case 'success':
-            console.log( `username = ${ result.data.userName }` );
             req.body.userName = result.data.userName;
             req.body.roles = result.data.roles;
             if( result.data.employingStores ) {

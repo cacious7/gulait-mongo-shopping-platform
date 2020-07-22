@@ -10,11 +10,16 @@ const authenticateAccessToken = require( '../../util/authenticateAccessToken' );
  * The simplest version of a product only has a 'name' and 'productType' as required input from the user
  */
 router.post( '/', authenticateAccessToken, ( req, res ) => {
+    //verify that the user is a seller
     if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
     
-    //verify that a seller has access to a specific store
-    const result = req.body.employingStores.includes( { storeId: req.body.storeId } );
-    return res.json( { message: 'Result', data: result } );
+    //verify that the seller has access to a specific store
+    const result = req.body.employingStores.filter( store => store.storeId === req.body.storeId  );
+    if( !result ) return res.status( 401 ).json( { 
+        message: 'Error', 
+        data: `This user has no access rights to this store [ store name = ${ result[0].storeName } ]` 
+    } );
+
     const validationSchema = joi.object().keys( {
         sku: joi.string(),
         name: joi.string().required(),
@@ -59,7 +64,7 @@ router.post( '/', authenticateAccessToken, ( req, res ) => {
             price: req.body.price,
             minPrice: req.body.minPrice,
             maxPrice: req.body.maxPrice,
-            //variations: req.body.variations ? req.body.variations : [],
+            variations: req.body.variations ? req.body.variations : [],
             discountType: req.body.discountType,
             discount: req.body.discount,
             discountMinOrder: req.body.discountMinOrder,
