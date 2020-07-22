@@ -6,9 +6,7 @@ const getBearerToken = require( './getBearerToken' );
 /**Authenticate a jwt Refresh Token */
 function authenticateRefreshToken( req, res, next ){
     const token = getBearerToken( req );
-    
     const result = authenticateToken( token, 'REFRESH TOKEN' );
-    console.log( `result = ${ result } ` );
 
     switch( result.message.toLowerCase() ){
         case 'error':

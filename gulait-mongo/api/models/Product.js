@@ -31,58 +31,58 @@ const ProductSchema = mongoose.Schema( {
     maxPrice: {
         type: Number
     },
-    variations: [
-        {
-            _id: {
-                type: mongoose.ObjectId 
-            },
-            sku: {
-                type: String,
-                default: crypto.randomBytes( 10 ).toString( 'hex' ),
-                unique: true
-            },
-            price: {
-                type: Number
-            },
-            discountType: {
-                type: String,
-            },
-            discount: {
-                type: Number
-            },
-            discountMinOrder: {
-                type: Number
-            },
-            discountStartDate: {
-                type: Date
-            },
-            discountEndDate: {
-                type: Date
-            },
-            inStock: {
-                type: Boolean
-            },
-            enableStockManagement: {
-                type: Boolean
-            },
-            stockQty: {
-                type: Number
-            },
-            attributes: [
-                {
-                    attributeId: {
-                        type: mongoose.ObjectId,
-                    },
-                    attributeType: {
-                        type: String
-                    },
-                    attributeValue: {
-                        type: String
-                    }
-                }
-            ]
-        }
-    ],
+    // variations: [
+    //     {
+    //         _id: {
+    //             type: mongoose.ObjectId 
+    //         },
+    //         sku: {
+    //             type: String,
+    //             default: crypto.randomBytes( 10 ).toString( 'hex' ),
+    //             unique: true
+    //         },
+    //         price: {
+    //             type: Number
+    //         },
+    //         discountType: {
+    //             type: String,
+    //         },
+    //         discount: {
+    //             type: Number
+    //         },
+    //         discountMinOrder: {
+    //             type: Number
+    //         },
+    //         discountStartDate: {
+    //             type: Date
+    //         },
+    //         discountEndDate: {
+    //             type: Date
+    //         },
+    //         inStock: {
+    //             type: Boolean
+    //         },
+    //         enableStockManagement: {
+    //             type: Boolean
+    //         },
+    //         stockQty: {
+    //             type: Number
+    //         },
+    //         attributes: [
+    //             {
+    //                 attributeId: {
+    //                     type: mongoose.ObjectId,
+    //                 },
+    //                 attributeType: {
+    //                     type: String
+    //                 },
+    //                 attributeValue: {
+    //                     type: String
+    //                 }
+    //             }
+    //         ]
+    //     }
+    // ],
     discountType: {
         type: String
     },

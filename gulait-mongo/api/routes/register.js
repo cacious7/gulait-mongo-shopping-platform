@@ -1,6 +1,7 @@
 const router = require( 'express' ).Router();
 const User = require( '../models/User' );
 const Store = require( '../models/Store' );
+const mongoose = require( 'mongoose' );
 const bcrypt = require( 'bcrypt' );
 const joi = require( 'joi' );
 
@@ -60,6 +61,7 @@ router.post( '/buyer', async ( req, res ) => {
  * @return {JSON} the res object is sent back to user
  */
 router.post( '/seller', async ( req, res ) => {
+   
     if ( !req.body.userEmail && !req.body.storeEmail ) 
     return res.json( { 
         message: 'Error', 
@@ -107,15 +109,6 @@ router.post( '/seller', async ( req, res ) => {
     if( !res.headersSent ){
         try {
             const hashedPassword = await bcrypt.hash( req.body.password, 10 );
-            console.log( email != null );
-            const user = new User( {
-                userName: req.body.userName,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: email != null ? email : req.body.userEmail,
-                password: hashedPassword,
-                roles: [ { name: "buyer" } ]
-            } );
 
             const store = new Store( {
                 name: req.body.storeName,
@@ -123,25 +116,37 @@ router.post( '/seller', async ( req, res ) => {
                 storeUrl: req.body.storeName.toLowerCase()
             } );
 
+            let savedStore = null;
+            let savedUser = null;
             //let the multiple models save asynchronously
-            async function saveMuntipleMoldels( modelA, modelB ){
-                let savedModelA = null;
-                let savedModelB = null;
-                await modelA.save().then( async ( savedDoc ) => {
-                    savedModelA = savedDoc;
-                    savedModelB = await modelB.save();
-                });
-                
-                return [ savedModelA, savedModelB ];
-            }
+            await store.save()
+            .then( async ( storeDoc ) => {
+                savedStore = storeDoc;
+                const user = new User( {
+                    userName: req.body.userName,
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: email != null ? email : req.body.userEmail,
+                    password: hashedPassword,
+                    roles: [ { name: "seller" } ],
+                    employingStores: [ { 
+                        storeId: savedStore._id,
+                        storeName: savedStore.name
+                     } ]
+                } );
+    
+                await user.save()
+                .then( userDoc => {
+                    savedUser = userDoc;
+                } )
+            });
+            
             //wait for the asynchronous model saving
-            const savedModels = await saveMuntipleMoldels( user, store );
-
             res.status( 200 ).json( { 
                 message: 'Success', 
                 data: { 
-                    user: savedModels[0], 
-                    store: savedModels[1] 
+                    user: savedUser, 
+                    store: savedStore 
                 } 
             } );
 

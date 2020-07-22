@@ -1,22 +1,35 @@
-GET http://localhost:3000/posts
+GET http://localhost:3000/product
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6Im1hcmsiLCJpYXQiOjE1OTM3MDY1MTYsImV4cCI6MTU5MzcxMDExNn0.9Fu17kawcsLEyd-Fqf1zcxLHj5QuVHYKlBXzPm8NSOo
 ###
 
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6ImNhY2lvdXMiLCJpYXQiOjE1OTIxODI2ODV9.Ff9O6ShxcklkitlQocaIhF8PSvfyznaOexNetJDEr0U
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE1Mjg5OSwiZXhwIjoxNTk1MjM5Mjk5fQ.7xrz8C1bD9EPowZTH5XCxv-HyJwb1FAHx_RmLKFjiYs
 ###
 
 DELETE http://localhost:3000/logout
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6Im1hcmsiLCJpYXQiOjE1OTM3MjAxMzUsImV4cCI6MTU5MzgwNjUzNX0.DIxREQcTbGsHZBL0567IkIGRy2HrYC7SlpRxS89ZYMY
-###
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE1Mjg5OSwiZXhwIjoxNTk1MjM5Mjk5fQ.7xrz8C1bD9EPowZTH5XCxv-HyJwb1FAHx_RmLKFjiYs
 
+
+###
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
     "userName": "mark",
     "password": "Cacnga@153."
+}
+
+
+### CREATE PRODUCT - only for authenicated users
+POST http://localhost:3000/product
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE2NzA1OSwiZXhwIjoxNTk1MTcwNjU5fQ.gHBMYorvewekOqUyTS_cSs9mVhxJiCgzrITThxRaMuw
+Content-Type: application/json
+
+{
+    "name": "Perper Spices",
+    "storeId": "6d08f16c21afb7abf6b03ba7",
+    "status": "online",
+    "productType": "simple"
 }
 
 

@@ -6,8 +6,8 @@ require( 'dotenv/config' );
 /**Authenticate a jwt access token */
 function authenticateAccessToken( req, res, next ){
     const token = getBearerToken( req );
-
     const result = authenticateToken( token, 'ACCESS TOKEN' );
+    
     switch( result.message.toLowerCase() ){
         case 'error':
             res.status( 401 ).json( { message: result.message, data: result.data } );

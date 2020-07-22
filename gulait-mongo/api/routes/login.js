@@ -42,7 +42,7 @@ router.post( '/', async ( req, res ) => {
                         console.log( `existing refresh token = ${ existingRefreshToken[0].token }` );
                         const result = authenticateToken( existingRefreshToken[0].token, "REFRESH TOKEN" );
 
-                        switch( result[0].toLowerCase() ){
+                        switch( result.message.toLowerCase() ){
                             case 'error':
                                 const expiredRefreshToken = await RefreshToken.deleteOne( { userName: req.body.userName } );
                                 break;
