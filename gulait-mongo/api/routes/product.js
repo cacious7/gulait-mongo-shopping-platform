@@ -9,7 +9,7 @@ const authenticateAccessToken = require( '../../util/authenticateAccessToken' );
  * Creates a product
  * The simplest version of a product only has a 'name' and 'productType' as required input from the user
  */
-router.post( '/', authenticateAccessToken, ( req, res ) => {
+router.post( '/create', authenticateAccessToken, ( req, res ) => {
     //verify that the user is a seller
     if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
     
@@ -51,13 +51,13 @@ router.post( '/', authenticateAccessToken, ( req, res ) => {
     } );
 
     //Validate user input
-    joi.validate( req.body, validationSchema, (err, result) => {
+    joi.validate( req.body, validationSchema, ( err, result ) => {
         if( err ) return res.status( 401 ).json( { message: 'Error', Data: err } );
     } );
 
     if( !res.headersSent ) {
         product = new Product( {
-            sku: req.body.sku ? req.body.sku : crypto.randomBytes(5).toString('hex') ,
+            sku: req.body.sku ? req.body.sku : crypto.randomBytes( 5 ).toString( 'hex' ) ,
             name: req.body.name,
             productType: req.body.productType,
             imgUrl: req.body.imgUrl,
@@ -90,8 +90,40 @@ router.post( '/', authenticateAccessToken, ( req, res ) => {
 } );
 
 /**
- * Gets a list of products
+ * searches for a list of publicly visible products
+ * by id or by name
+ * @param { String } id the id of the product to be searched
+ * @param { String } name the name of the product to be searched
+ * @return { JSON } the list of product found ranging from one to many
  */
+router.get( '/search', async ( req, res ) => {
+    //If both id and name are provided, an error should be return
+    if( req.body.id && req.body.name ) return res.status( 401 ).json( {
+        message: 'Error',
+        data: 'You can only search a product by one value/criteria. Either "id" or "name", not both.'
+    } );
+
+    //validate user input
+    const validationSchema = joi.object().keys( {
+        id: joi.string().min( 5 ).max( 30 ),
+        name: joi.string().min( 1 )
+    } );
+
+    joi.validate( req.body, validationSchema, ( err, result ) => {
+        if( err ) return res.status( 401 ).json( { message: 'Error', data: err } );
+    } );
+
+    //get a product by ID
+    if( req.body.id ){
+        const product = await Product.findById( req.body.id );
+        return res.status( 200 ).json( { message: 'Success', data: product } );
+    } 
+    //search for products by name
+    else if( req.body.name ){
+        const products = await Product.find( { name: req.body.name } );
+        return res.status().json( { message: 'Success', data: products } );
+    }
+});
 
  /**
   * Deletes a list of products
