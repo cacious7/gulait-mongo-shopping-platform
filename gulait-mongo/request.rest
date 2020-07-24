@@ -3,12 +3,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6Im1hc
 ###
 
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE1Mjg5OSwiZXhwIjoxNTk1MjM5Mjk5fQ.7xrz8C1bD9EPowZTH5XCxv-HyJwb1FAHx_RmLKFjiYs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1NjAxNDA2LCJleHAiOjE1OTU2ODc4MDZ9.vnFIv91Iu3EZ83cHaCuRYqhCjmkm8s7PaOm7kA1S0iw
 ###
 
 DELETE http://localhost:3000/logout
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE1Mjg5OSwiZXhwIjoxNTk1MjM5Mjk5fQ.7xrz8C1bD9EPowZTH5XCxv-HyJwb1FAHx_RmLKFjiYs
-
 
 ###
 POST http://localhost:3000/login
@@ -21,17 +20,33 @@ Content-Type: application/json
 
 
 ### CREATE PRODUCT - only for authenicated users
-POST http://localhost:3000/product
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE2NzA1OSwiZXhwIjoxNTk1MTcwNjU5fQ.gHBMYorvewekOqUyTS_cSs9mVhxJiCgzrITThxRaMuw
+POST http://localhost:3000/product/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1NDI1NTM4LCJleHAiOjE1OTU0MjkxMzh9.SjGAlbFZc7gtqhv1HF1nNy4fRItgG6sTb3gAhByu75I
 Content-Type: application/json
 
 {
-    "name": "Perper Spices",
-    "storeId": "6d08f16c21afb7abf6b03ba7",
+    "name": "Shoe Glass",
+    "storeId": "5f18325d6b8fba10a8ff6f5a",
     "status": "online",
     "productType": "simple"
 }
 
+### CREATE PRODUCT - for public users, no authentication
+GET http://localhost:3000/product/search
+Content-Type: application/json
+
+{
+    "name": ""
+}
+
+### Delete Product - Needs authorization
+DELETE http://localhost:3000/product/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1NjAxNDA2LCJleHAiOjE1OTU2MDUwMDZ9._iGNLHeMfAATH6E7Pz-oY4IbnepQpgZvN55s46bUla4
+Content-Type: application/json
+
+{
+    "id": "5f10d3ef5bcae7041878f349",
+}
 
 ### REGISTER A USER
 POST http://localhost:3000/register/buyer

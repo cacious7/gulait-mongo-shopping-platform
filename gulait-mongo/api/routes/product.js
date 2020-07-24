@@ -4,13 +4,14 @@ const joi = require( 'joi' );
 const Product = require( '../models/Product' );
 const crypto = require( 'crypto' );
 const authenticateAccessToken = require( '../../util/authenticateAccessToken' );
-const grantStoreAccess = require( '../../util/grantStoreAccess' );
+const grantSellerAccessToProduct = require( '../../util/grantSellerAccessToProduct' );
+const grantSellerAccessToStore = require( '../../util/grantSellerAccessToStore' );
 
 /**
  * Creates a product
  * The simplest version of a product only has a 'name' and 'productType' as required input from the user
  */
-router.post( '/create', authenticateAccessToken, grantStoreAccess, ( req, res ) => {
+router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, ( req, res ) => {
    
     const validationSchema = joi.object().keys( {
         sku: joi.string(),
@@ -36,7 +37,7 @@ router.post( '/create', authenticateAccessToken, grantStoreAccess, ( req, res ) 
         crossSells: joi.array(),
         status: joi.string(),
         visibility: joi.object(),
-        storeId: joi.string().required(),
+        storeId: joi.string(),
         userName: joi.string().required(),
         roles: joi.array().required(),
         employingStores: joi.array() 
@@ -128,28 +129,32 @@ router.get( '/search', async ( req, res ) => {
   * Deletes a product
   * The list ranges from 1 to many
   * Needs authorization
-  * @param { Array } req.body.id the list of product ids to be deleted
+  * @param { String } req.body.id the list of product ids to be deleted
+  * @param { String } req.body.storeId the id of the store to grant access to
   * @param { Object } req the request from the user client
   * @param { Object } res the response to be sent to the user client
   */
- router.delete( '/delete', authenticateAccessToken, grantStoreAccess, async ( req, res ) => {
+ router.delete( '/delete', authenticateAccessToken, grantSellerAccessToProduct, async ( req, res ) => {
     const validationSchema = joi.object().keys( {
-        id: joi.string().required()
+        id: joi.string().required(),
+        userName: joi.string().required(),
+        roles: joi.array().required(),
+        employingStores: joi.array()
     } );
 
-    joi.validate( req.body.id, validationSchema, ( err, result ) => {
+    joi.validate( req.body, validationSchema, ( err, result ) => {
         if( err ) return res.status( 401 ).json( { message: 'Error', data: err } );
     } );
 
     if( !res.headersSent ){
         try {
             //Delete the product
-            Product.deleteOne( { _id: ObjectId( id ) } )
+            Product.deleteOne( { _id: mongoose.Types.ObjectId( req.body.id ) } )
             .then( results => {
                 return res.status( 200 ).json( { message: 'Success', data: results } );
             } );
         } catch (err) {
-            if( err ) return res.json( { message: 'Error', data: err } );
+            if( err ) return res.json( { message: 'Error', data: err.toString() } );
         }
     }
 

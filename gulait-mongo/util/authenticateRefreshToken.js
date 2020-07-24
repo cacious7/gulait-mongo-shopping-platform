@@ -15,6 +15,9 @@ function authenticateRefreshToken( req, res, next ){
         case 'success':
             req.body.userName = result.data.userName;
             req.body.roles = result.data.roles;
+            if( result.data.employingStores ) {
+                req.body.employingStores = result.data.employingStores
+            }
             next(); //go to the next function in the middleware
             break;
         default: 
