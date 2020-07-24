@@ -100,28 +100,35 @@ router.get( '/search', async ( req, res ) => {
     //If both id and name are provided, an error should be return
     if( req.body.id && req.body.name ) return res.status( 401 ).json( {
         message: 'Error',
-        data: 'You can only search a product by one value/criteria. Either "id" or "name", not both.'
+        data: 'You can only search a product by one value (criteria). Either by [id] or [name], not both.'
     } );
 
     //validate user input
     const validationSchema = joi.object().keys( {
         id: joi.string().min( 5 ).max( 30 ),
-        name: joi.string().min( 1 )
+        name: joi.string().allow('')
     } );
 
     joi.validate( req.body, validationSchema, ( err, result ) => {
         if( err ) return res.status( 401 ).json( { message: 'Error', data: err } );
     } );
 
-    //get a product by ID
-    if( req.body.id ){
-        const product = await Product.findById( req.body.id );
-        return res.status( 200 ).json( { message: 'Success', data: product } );
-    } 
-    //search for products by name
-    else if( req.body.name ){
-        const products = await Product.find( { name: req.body.name } );
-        return res.status().json( { message: 'Success', data: products } );
+    if( !res.headersSent ) {
+        try {
+            //get a product by ID
+            if( req.body.id ){
+                const product = await Product.findById( req.body.id );
+                return res.status( 200 ).json( { message: 'Success', data: product } );
+            } 
+            //search for products by name
+            else if( req.body.name || req.body.name.length === 0 ){
+                const regex = `.*${ req.body.name }.*`;
+                const products = await Product.find( { name: { $regex: regex, $options: "i" } } );
+                return res.status( 200 ).json( { message: 'Success', data: products } );
+            }
+        } catch ( err ) {
+            return res.json( { message: 'Error', data: err.toString() } );
+        }
     }
 });
 
