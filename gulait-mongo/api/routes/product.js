@@ -4,22 +4,14 @@ const joi = require( 'joi' );
 const Product = require( '../models/Product' );
 const crypto = require( 'crypto' );
 const authenticateAccessToken = require( '../../util/authenticateAccessToken' );
+const grantStoreAccess = require( '../../util/grantStoreAccess' );
 
 /**
  * Creates a product
  * The simplest version of a product only has a 'name' and 'productType' as required input from the user
  */
-router.post( '/create', authenticateAccessToken, ( req, res ) => {
-    //verify that the user is a seller
-    if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
-    
-    //verify that the seller has access to a specific store
-    const result = req.body.employingStores.filter( store => store.storeId === req.body.storeId  );
-    if( !result ) return res.status( 401 ).json( { 
-        message: 'Error', 
-        data: `This user has no access rights to this store [ store name = ${ result[0].storeName } ]` 
-    } );
-
+router.post( '/create', authenticateAccessToken, grantStoreAccess, ( req, res ) => {
+   
     const validationSchema = joi.object().keys( {
         sku: joi.string(),
         name: joi.string().required(),
@@ -133,7 +125,34 @@ router.get( '/search', async ( req, res ) => {
 });
 
  /**
-  * Deletes a list of products
+  * Deletes a product
+  * The list ranges from 1 to many
+  * Needs authorization
+  * @param { Array } req.body.id the list of product ids to be deleted
+  * @param { Object } req the request from the user client
+  * @param { Object } res the response to be sent to the user client
   */
+ router.delete( '/delete', authenticateAccessToken, grantStoreAccess, async ( req, res ) => {
+    const validationSchema = joi.object().keys( {
+        id: joi.string().required()
+    } );
+
+    joi.validate( req.body.id, validationSchema, ( err, result ) => {
+        if( err ) return res.status( 401 ).json( { message: 'Error', data: err } );
+    } );
+
+    if( !res.headersSent ){
+        try {
+            //Delete the product
+            Product.deleteOne( { _id: ObjectId( id ) } )
+            .then( results => {
+                return res.status( 200 ).json( { message: 'Success', data: results } );
+            } );
+        } catch (err) {
+            if( err ) return res.json( { message: 'Error', data: err } );
+        }
+    }
+
+ } );
 
  module.exports = router;
