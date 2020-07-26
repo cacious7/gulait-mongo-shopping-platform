@@ -30,7 +30,7 @@ router.post( '/buyer', async ( req, res ) => {
      if ( !res.headersSent ) {
         try {
 
-            //second param is the salt rounds/ salt creator, the higher the num, 
+            //second param is the salt rounds / salt creator, the higher the num, 
             //the harder the salt is to guess and the longer it takes to create
             const hashedPassword = await bcrypt.hash( req.body.password, 10 ); 
 
@@ -43,13 +43,13 @@ router.post( '/buyer', async ( req, res ) => {
                 roles: [ { name: "buyer" } ]
             } );
 
-            const savedUser = await user.save()
+            const savedUser = await user.save();
             res.status( 200 ).json( { 
                 message: 'Registration successfull', 
                 data: { user: savedUser.userName } 
             });
         } catch (err) {
-            res.json( { message: 'ERROR', data: err.toString() } );
+            res.json( { message: 'Error', data: err.toString() } );
         }
     }
 } );
@@ -118,7 +118,7 @@ router.post( '/seller', async ( req, res ) => {
 
             let savedStore = null;
             let savedUser = null;
-            //let the multiple models save asynchronously
+            //let the multiple models save synchronously
             await store.save()
             .then( async ( storeDoc ) => {
                 savedStore = storeDoc;
@@ -128,7 +128,7 @@ router.post( '/seller', async ( req, res ) => {
                     lastName: req.body.lastName,
                     email: email != null ? email : req.body.userEmail,
                     password: hashedPassword,
-                    roles: [ { name: "seller" } ],
+                    roles: [ { name: "seller" }, { name: "buyer" } ],
                     employingStores: [ { 
                         storeId: savedStore._id,
                         storeName: savedStore.name
@@ -159,4 +159,5 @@ router.post( '/seller', async ( req, res ) => {
 
 
 } );
+
 module.exports = router;

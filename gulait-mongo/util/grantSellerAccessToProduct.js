@@ -1,5 +1,6 @@
 const Product = require( "../api/models/Product" );
 const grantAccessToStore = require( "./grantAccessToStore" );
+const checkRole = require( "./checkRole" );
 
 /**
  * Grants a user access to a specific product
@@ -11,7 +12,8 @@ const grantAccessToStore = require( "./grantAccessToStore" );
  */
 async function grantSellerAccessToProduct( req, res, next ){
     //verify that the user is a seller
-    if( req.body.roles[0].name != 'seller' ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
+
+    if( !checkRole( req.body.roles, 'seller' ) ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
     
     try {
         let storeId = null;
