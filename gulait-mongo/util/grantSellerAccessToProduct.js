@@ -15,11 +15,13 @@ async function grantSellerAccessToProduct( req, res, next ){
     
     try {
         let storeId = null;
+        let product = null;
         //fetch the id of the store to be edited from the product id provided
         await Product.findById( req.body.id )
-        .then( product => {
-            if( product ) {
-                storeId = product.storeId
+        .then( retrievedProduct => {
+            if( retrievedProduct ) {
+                product = retrievedProduct;
+                storeId = product.storeId;
             }else{
                 return res.status( 401 ).json( { message: 'Error', data: 'A product with this id does not exist. Please check the provided id and try again.' } );
             }
@@ -35,6 +37,9 @@ async function grantSellerAccessToProduct( req, res, next ){
                         data: `This user has no access rights to modify this product` 
                     } );
                 case 'granted':
+                    //pass the product to prevent running 
+                    //a query to retrieve it again
+                    req.body.product = product; 
                     next();
                     break;
             }

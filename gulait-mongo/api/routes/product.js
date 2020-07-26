@@ -129,8 +129,7 @@ router.get( '/search', async ( req, res ) => {
   * Deletes a product
   * The list ranges from 1 to many
   * Needs authorization
-  * @param { String } req.body.id the list of product ids to be deleted
-  * @param { String } req.body.storeId the id of the store to grant access to
+  * @param { String } req.body.id the id of the product to be deleted
   * @param { Object } req the request from the user client
   * @param { Object } res the response to be sent to the user client
   */
@@ -139,7 +138,8 @@ router.get( '/search', async ( req, res ) => {
         id: joi.string().required(),
         userName: joi.string().required(),
         roles: joi.array().required(),
-        employingStores: joi.array()
+        employingStores: joi.array(),
+        product: joi.object()
     } );
 
     joi.validate( req.body, validationSchema, ( err, result ) => {
@@ -153,9 +153,104 @@ router.get( '/search', async ( req, res ) => {
             .then( results => {
                 return res.status( 200 ).json( { message: 'Success', data: results } );
             } );
-        } catch (err) {
+        } catch ( err ) {
             if( err ) return res.json( { message: 'Error', data: err.toString() } );
         }
+    }
+
+ } );
+
+ /**
+  * Updates a product
+  * Needs authprization
+  * @param { String } req.body.id the id of the product to be update
+  * @param { Object } req.body.product the product to be updated
+  * @param { Object } req the request from the user client
+  * @param { Object } res the response to be sent to the user client
+  */
+ router.patch( '/update', authenticateAccessToken, grantSellerAccessToProduct, async ( req, res) => {
+     //validate user input
+     const validationSchema = joi.object().keys( {
+        id: joi.string().required(),
+        sku: joi.string(),
+        name: joi.string(),
+        productType: joi.string(),
+        imgUrl: joi.string(),
+        price: joi.number(),
+        minPrice: joi.number(),
+        maxPrice: joi.number(),
+        variations: joi.array(),
+        discountType: joi.string(),
+        discount: joi.number(),
+        discountMinOrder: joi.number(),
+        discountStartDate: joi.date(),
+        discountEndDate: joi.date(),
+        inStock: joi.boolean(),
+        enableStockManagement: joi.boolean(),
+        stockQty: joi.number(),
+        shippingClassId: joi.string(),
+        shortDescription: joi.string(),
+        longDescription: joi.string(),
+        upSells: joi.array(),
+        crossSells: joi.array(),
+        status: joi.string(),
+        visibility: joi.object(),
+        userName: joi.string().required(),
+        roles: joi.array().required(),
+        employingStores: joi.array(),
+        product: joi.object().required() 
+    } );
+    joi.validate( req.body, validationSchema, ( err, result ) => {
+        if( err ) return res.status( 401 ).json( { message: 'Error', data: err } );
+    } );
+
+    try {
+        if( !res.headersSent ){
+            //fetch, update and save the product 
+            //this is used in order to take advantage
+            //of mongoose validation and middleware capabilities
+            const product = req.body.product;
+
+            if( product ){
+                //update
+                if( req.body.sku ) product.sku = req.body.sku;
+                if( req.body.name ) product.name = req.body.name;
+                if( req.body.productType ) product.productType = req.body.productType;
+                if( req.body.imgUrl ) product.imgUrl = req.body.imgUrl;
+                if( req.body.price ) product.price = req.body.price;
+                if( req.body.minPrice ) product.minPrice = req.body.minPrice;
+                if( req.body.maxPrice ) product.maxPrice = req.body.maxPrice;
+                if( req.body.variations ) product.variations = req.body.variations;
+                if( req.body.discountType ) product.discountType = req.body.discountType;
+                if( req.body.discount ) product.discount = req.body.discount;
+                if( req.body.discountMinOrder ) product.discountMinOrder = req.body.discountMinOrder;
+                if( req.body.discountStartDate ) product.discountStartDate = req.body.discountStartDate;
+                if( req.body.discountEndDate ) product.discountEndDate = req.body.discountEndDate;
+                if( req.body.inStock ) product.inStock = req.body.inStock;
+                if( req.body.enableStockManagement ) product.enableStockManagement = req.body.enableStockManagement;
+                if( req.body.stockQty ) product.stockQty = req.body.stockQty;
+                if( req.body.shippingClassId ) product.shippingClassId = req.body.shippingClassId;
+                if( req.body.shortDescription ) product.shortDescription = req.body.shortDescription;
+                if( req.body.longDescription ) product.longDescription = req.body.longDescription;
+                if( req.body.upSells ) product.upSells = req.body.upSells;
+                if( req.body.crossSells ) product.crossSells = req.body.crossSells;
+                if( req.body.status ) product.status = req.body.status;
+                if( req.body.visibility ) product.visibility = req.body.visibility;
+                //save
+                const updatedProduct = await product.save();
+                return res.status( 200 ).json( { message: 'Success', data: updatedProduct } );
+            }else {
+                return res.status( 401 ).json( { 
+                    message: 'Error', 
+                    data: 'No product exists with the provided id. Please check the id you provided and try again' 
+                } );
+            }
+        }
+    } catch ( err ) {
+        return res.status( 500 ).json( { 
+            message: 'Error', 
+            data: err
+        } );
     }
 
  } );
