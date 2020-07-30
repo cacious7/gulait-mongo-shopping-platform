@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mongo-connect": "%npm_package_config_mongo-connect%"
+  },
+  "config": {
+    "mongo-connect": "mongo \"mongodb+srv://cluster0-qcy1l.mongodb.net/gulaitDb\" --username cacious"
   },
   "author": "Cacious Siamunyanga",
   "license": "ISC",
