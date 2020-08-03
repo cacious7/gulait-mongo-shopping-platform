@@ -6,7 +6,6 @@ const crypto = require( 'crypto' );
 const authenticateAccessToken = require( '../../util/auth/authenticateAccessToken' );
 const grantSellerAccessToProduct = require( '../../util/auth/grantSellerAccessToProduct' );
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
-const ProductCategory = require( '../models/ProductCategory' );
 const validateCategories = require( '../../util/auth/validateCategories' );
 
 /**

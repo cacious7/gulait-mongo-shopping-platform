@@ -1,6 +1,6 @@
 ###
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTMwNzg2LCJleHAiOjE1OTYyMTcxODZ9.IPNw6VdpcOpgrlPcB7v2jZgZO3Iqo_kVCl4NQ2f--Jk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MzkzMTYzLCJleHAiOjE1OTY0Nzk1NjN9.jKH9eEoBh3LOIYMPQTH23mG11vvv8cUSzUxb_ib-oPc
 
 
 
@@ -17,10 +17,9 @@ Content-Type: application/json
     "password": "Cacnga@153."
 }
 
-
 ### CREATE PRODUCT - only for authenicated users
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTMwNzg2LCJleHAiOjE1OTYxMzQzODZ9.HgYMzscIt2IDLrUK_N5ppSoyMcvUDajIyTEj9xyPBtk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MzkzMTYzLCJleHAiOjE1OTYzOTY3NjN9.ADXwx-f586uQUWU_hqLRL1OZ6YeWftTjmDm2lZeep_g
 Content-Type: application/json
 
 {
@@ -29,25 +28,35 @@ Content-Type: application/json
     "status": "online",
     "productType": "simple",
     "categories": [ {
-        "Product": {
+        "Products": {
             "new": {
-                "men_apostrophe_s_Fashion": {
-                    "clothing": true
+                "Men_apostrophe_s_Fashion": {
+                    "Clothing": true
                 }
             }
         }
     } ]
 }
 
+{"message":"SUCCESS","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NDEzMTk5LCJleHAiOjE1OTY0MTY3OTl9.dh7zBdXWkHHwxzhwLXxMZ2dmoJX7xZAD6z9dYHoQNKo"}
 ### UPDATE Product - Needs authorization
 PATCH http://localhost:3000/product/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1Nzk1OTA4LCJleHAiOjE1OTU3OTk1MDh9.BxvvkZSQ0bCWtCWS1kn4tDvzo2zEEx4Uc_rZ9U9b7RI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NDEzMTk5LCJleHAiOjE1OTY0MTY3OTl9.dh7zBdXWkHHwxzhwLXxMZ2dmoJX7xZAD6z9dYHoQNKo
 Content-Type: application/json
 
 {
-    "id": "5f1d843cf87a663d001d708c",
-    "name": "Nike T-shirt",
-    "productType": "variable"
+    "id": "5f27078b5715ad17b025655a",
+    "name": "Buggy Hoodie",
+    "productType": "simple",
+    "categories": [ {
+        "Products": {
+            "new": {
+                "Women_apostrophe_s_Fashion": {
+                    "Clothing": true
+                }
+            }
+        }
+    } ]
 }
 
 ### CREATE PRODUCT - for public users, no authentication
@@ -60,11 +69,11 @@ Content-Type: application/json
 
 ### DELETE Product - Needs authorization
 DELETE http://localhost:3000/product/delete
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1NzczMzcyLCJleHAiOjE1OTU3NzY5NzJ9.hch3-pM4BGWrE08ngNP4nrpr65d86Ab0CwsldyZNXtg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTkxMDg3LCJleHAiOjE1OTYxOTQ2ODd9.eqICmh-6VepqmQU6fZkgNY_gtWu9LJk5ZWOy_YG0hMA
 Content-Type: application/json
 
 {
-    "id": "5f1b4fad06a7dc0378b7dab9"
+    "id": "5f23fa64bcbda017644a47f7"
 }
 
 
