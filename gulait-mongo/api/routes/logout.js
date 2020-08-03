@@ -1,6 +1,6 @@
 const router = require( 'express' ).Router();
 const RefreshToken = require( '../models/RefreshToken' );
-const authenticateRefreshToken = require( '../../util/authenticateRefreshToken' );
+const authenticateRefreshToken = require( '../../util/auth/authenticateRefreshToken' );
 const joi = require( 'joi' );
 
 /**

@@ -1,11 +1,8 @@
 ###
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1NzY5NzA0LCJleHAiOjE1OTU4NTYxMDR9.JA2MMYKfslI6NzcY4JaVhw38k_ZweGcRlprLr6pRUes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTMwNzg2LCJleHAiOjE1OTYyMTcxODZ9.IPNw6VdpcOpgrlPcB7v2jZgZO3Iqo_kVCl4NQ2f--Jk
 
-{
-    "message":"SUCCESS",
-    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1Nzk1OTA4LCJleHAiOjE1OTU3OTk1MDh9.BxvvkZSQ0bCWtCWS1kn4tDvzo2zEEx4Uc_rZ9U9b7RI"
-}
+
 
 ###
 DELETE http://localhost:3000/logout
@@ -20,16 +17,26 @@ Content-Type: application/json
     "password": "Cacnga@153."
 }
 
+
 ### CREATE PRODUCT - only for authenicated users
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk1Nzk1OTA4LCJleHAiOjE1OTU3OTk1MDh9.BxvvkZSQ0bCWtCWS1kn4tDvzo2zEEx4Uc_rZ9U9b7RI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTMwNzg2LCJleHAiOjE1OTYxMzQzODZ9.HgYMzscIt2IDLrUK_N5ppSoyMcvUDajIyTEj9xyPBtk
 Content-Type: application/json
 
 {
-    "name": "Night dress",
+    "name": "Street Hoodie",
     "storeId": "5f18325d6b8fba10a8ff6f5a",
     "status": "online",
-    "productType": "simple"
+    "productType": "simple",
+    "categories": [ {
+        "Product": {
+            "new": {
+                "men_apostrophe_s_Fashion": {
+                    "clothing": true
+                }
+            }
+        }
+    } ]
 }
 
 ### UPDATE Product - Needs authorization
@@ -85,6 +92,9 @@ Content-Type: application/json
     "storeName": "markusShoes",
     "password": "Cacnga@153."
 }
+
+### CATEGORY
+POST http://localhost:3000/category/load
 
 ### HOME PAGE
 GET http://localhost:3000/

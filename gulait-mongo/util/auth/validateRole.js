@@ -4,7 +4,7 @@
  * @param { String } roleName the name of the role to be found
  * @return { Boolean } true if a value was found and false if not
  */
-function checkRole( roles, roleName ){
+function validateRole( roles, roleName ){
     //if values provided are null return false
     //to indicate that a role was not found
     if( !roles && !roleName ) return false;
@@ -13,4 +13,4 @@ function checkRole( roles, roleName ){
     return isRoleFound;
 }
 
-module.exports = checkRole;
+module.exports = validateRole;

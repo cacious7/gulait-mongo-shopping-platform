@@ -3,8 +3,8 @@ const router = require( 'express' ).Router();
 const User = require( '../models/User' );
 const bcrypt = require( 'bcrypt' );
 const jwt = require( 'jsonwebtoken' );
-const generateToken = require( '../../util/generateToken' );
-const authenticateToken = require( '../../util/authenticateToken' );
+const generateToken = require( '../../util/auth/generateToken' );
+const authenticateToken = require( '../../util/auth/authenticateToken' );
 const RefreshToken = require( '../models/RefreshToken' );
 const joi = require( 'joi' );
 

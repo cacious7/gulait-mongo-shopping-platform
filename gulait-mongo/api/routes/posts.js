@@ -1,7 +1,7 @@
 const express =  require( 'express' ); //import only works in es6 and u need laravel mix for that
 const router = express.Router();
 const Post = require( '../models/Post' );
-const authToken = require( '../../util/authorizeToken' );
+const authToken = require( '../../util/auth/authorizeToken' );
 
 //In this file, it shall always be concatenating the used route to the one provided to the middleware that calls it.
 //so there is no need to say /posts again because that has already been specified by the middleware

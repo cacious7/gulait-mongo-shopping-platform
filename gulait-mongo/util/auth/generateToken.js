@@ -1,5 +1,5 @@
 const jwt = require( 'jsonwebtoken' );
-const RefreshToken = require( '../api/models/RefreshToken' );
+const RefreshToken = require( '../../api/models/RefreshToken' );
 
 /**
  * Creates a JWT token
