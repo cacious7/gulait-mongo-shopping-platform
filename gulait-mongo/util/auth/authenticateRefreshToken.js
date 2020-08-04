@@ -1,4 +1,3 @@
-const jwt = require( 'jsonwebtoken' );
 require( 'dotenv/config' );
 const authenticateToken = require( './authenticateToken' );
 const getBearerToken = require( './getBearerToken' );

@@ -1,8 +1,6 @@
 require( 'dotenv/config' );
 const router = require( 'express' ).Router();
 const RefreshToken = require( '../models/RefreshToken' );
-const User = require( '../models/User' );
-const jwt = require( 'jsonwebtoken' );
 const generateToken = require( '../../util/auth/generateToken' );
 const joi = require( 'joi' );
 const authenticateRefreshToken = require( '../../util/auth/authenticateRefreshToken' );

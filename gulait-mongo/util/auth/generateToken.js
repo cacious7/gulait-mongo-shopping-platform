@@ -22,7 +22,6 @@ async function generateToken( type, userData ){
         
         try {
             const savedRefreshToken = await refreshTokenModel.save();
-            console.log( `saved refresh token = ${ savedRefreshToken }` );
             return  savedRefreshToken.token;
         } catch ( err ) {
             return err.toString();
