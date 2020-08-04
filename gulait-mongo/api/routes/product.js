@@ -52,40 +52,47 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
 
     if( !res.headersSent ) {
         try {
-            product = new Product( {
-                sku: req.body.sku ? req.body.sku : crypto.randomBytes( 5 ).toString( 'hex' ) ,
-                name: req.body.name,
-                productType: req.body.productType,
-                categories: req.body.categories,
-                imgUrl: req.body.imgUrl,
-                price: req.body.price,
-                minPrice: req.body.minPrice,
-                maxPrice: req.body.maxPrice,
-                variations: req.body.variations ? req.body.variations : [],
-                discountType: req.body.discountType,
-                discount: req.body.discount,
-                discountMinOrder: req.body.discountMinOrder,
-                discountStartDate: req.body.discountStartDate,
-                discountEndDate: req.body.discountEndDate,
-                inStock: req.body.inStock,
-                enableStockManagement: req.body.enableStockManagement,
-                stockQty: req.body.stockQty,
-                shippingClassId: req.body.shippingClassId,
-                shortDescription: req.body.shortDescription,
-                longDescription: req.body.longDescription,
-                upSells: req.body.upSells,
-                crossSells: req.body.crossSells,
-                status: req.body.status,
-                visibility: req.body.visibility,
-                storeId: mongoose.Types.ObjectId( req.body.storeId )
-            } );
-
-            const savedProduct = await product.save();
+            //validate categories
+            const validationResults = await validateCategories( req.body.categories );
+            if( validationResults.message.toLowerCase() == 'success' ){
+                product = new Product( {
+                    sku: req.body.sku ? req.body.sku : crypto.randomBytes( 5 ).toString( 'hex' ) ,
+                    name: req.body.name,
+                    productType: req.body.productType,
+                    categories: req.body.categories,
+                    imgUrl: req.body.imgUrl,
+                    price: req.body.price,
+                    minPrice: req.body.minPrice,
+                    maxPrice: req.body.maxPrice,
+                    variations: req.body.variations ? req.body.variations : [],
+                    discountType: req.body.discountType,
+                    discount: req.body.discount,
+                    discountMinOrder: req.body.discountMinOrder,
+                    discountStartDate: req.body.discountStartDate,
+                    discountEndDate: req.body.discountEndDate,
+                    inStock: req.body.inStock,
+                    enableStockManagement: req.body.enableStockManagement,
+                    stockQty: req.body.stockQty,
+                    shippingClassId: req.body.shippingClassId,
+                    shortDescription: req.body.shortDescription,
+                    longDescription: req.body.longDescription,
+                    upSells: req.body.upSells,
+                    crossSells: req.body.crossSells,
+                    status: req.body.status,
+                    visibility: req.body.visibility,
+                    storeId: mongoose.Types.ObjectId( req.body.storeId )
+                } );
+    
+                const savedProduct = await product.save();
+               
+                return res.json( { 
+                    message: 'Success', 
+                    data: savedProduct 
+                } ); 
+            }else{
+                return res.json( validationResults );
+            }
            
-            return res.json( { 
-                message: 'Success', 
-                data: savedProduct 
-            } ); 
         } catch ( err ) {
             return res.json( { message: 'Error', data: err.toString() } );
         }

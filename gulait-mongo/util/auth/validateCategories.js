@@ -2,7 +2,7 @@ const generateCategoryQuery = require( './generateCategoryQuery' );
 const Category = require( '../../api/models/Category' );
 
 /**
- * Verifies if a list of categories exists in the platform's categories collection 
+ * An async function that verifies if a list of categories exists in the platform's categories collection 
  * and if it is allowed for use
  * @param { Array } categories A list of categories to be verified
  * @return { Object } returns an object containing the message and data returned
@@ -31,13 +31,13 @@ async function validateCategories( categories ){
             if( categories.length == counter ){
                 return { message: 'Success', data: 'verification successfull' }
             }else{
-                throw new Error( 'Something went wrong when validating the category list' );
+                throw new Error( 'Something went wrong when validating the category list. Make sure all the categories are valid' );
             }
         }else {
             throw new Error( 'the categories list must be a nun empty array' );
         }
     } catch ( err ) {
-        return { message: 'Error', data: err.toString() }
+        return { message: 'Error', data: err.toString().replace( /Error:/gi, '' ).trim() }
     }
 }
 
