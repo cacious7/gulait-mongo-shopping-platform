@@ -42,7 +42,7 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         storeId: joi.string(),
         userName: joi.string().required(),
         roles: joi.array().required(),
-        employingStores: joi.array() 
+        employingStores: joi.array() .required()
     } );
 
     //Validate user input

@@ -17,6 +17,7 @@ const StoreSchema = new mongoose.Schema( {
         type: String,
         required: true
     },
+    categories: [ Object ],
     addresses: [
         {
             name: String,
