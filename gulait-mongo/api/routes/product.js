@@ -7,7 +7,7 @@ const authenticateAccessToken = require( '../../util/auth/authenticateAccessToke
 const grantSellerAccessToProduct = require( '../../util/auth/grantSellerAccessToProduct' );
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
 const validateCategories = require( '../../util/auth/validateCategories' );
-const createInvalidTags = require( '../../util/auth/createInvalidTags' );
+const createTags = require( '../../util/auth/createTags' );
 
 /**
  * Creates a product
@@ -56,9 +56,9 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         try {
             //validate categories
             const validationResults = await validateCategories( req.body.categories );
-            const tagCreationResults = await createInvalidTags( req.body.tags );
+            const tagCreationResults = await createTags( req.body.tags );
             //if creation fails, exit 
-            if( tagCreationResults.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
+            if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
 
             if( validationResults.message.toLowerCase() == 'success' ){
                 product = new Product( {
@@ -89,9 +89,9 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
                     storeId: mongoose.Types.ObjectId( req.body.storeId )
                 } );
 
-                //assign each tag
-                for( let tagName of tags ){
-                  product.tags.push( { _id: mongoose.Types.ObjectId(), name: tagName } );
+                //assign each tag to a product
+                for( let tag of tagCreationResults.data ){
+                    product.tags.push( { _id: tag._id, name: tag.name } );
                 }
     
                 const savedProduct = await product.save();
@@ -105,7 +105,7 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
             }
            
         } catch ( err ) {
-            return res.json( { message: 'Error', data: err.toString() } );
+            return res.status( 500 ).json( { message: 'Error', data: err.toString() } );
         }
         
     }

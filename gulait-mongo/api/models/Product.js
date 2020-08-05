@@ -20,7 +20,7 @@ const ProductSchema = mongoose.Schema( {
         required: true
     },
     categories: [ Object ],
-    tag: [ {
+    tags: [ {
         _id: mongoose.ObjectId,
         name: String
     } ],
