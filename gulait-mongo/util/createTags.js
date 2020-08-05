@@ -1,4 +1,4 @@
-const Tag = require( '../../api/models/Tag' );
+const Tag = require( '../api/models/Tag' );
 
 /**
  *	Check a list of tag names and create those that don't already exist in the database

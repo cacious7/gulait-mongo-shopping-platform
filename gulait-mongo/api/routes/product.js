@@ -7,7 +7,7 @@ const authenticateAccessToken = require( '../../util/auth/authenticateAccessToke
 const grantSellerAccessToProduct = require( '../../util/auth/grantSellerAccessToProduct' );
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
 const validateCategories = require( '../../util/auth/validateCategories' );
-const createTags = require( '../../util/auth/createTags' );
+const createTags = require( '../../util/createTags' );
 
 /**
  * Creates a product
@@ -170,6 +170,7 @@ router.get( '/search', async ( req, res ) => {
        name: joi.string(),
        productType: joi.string(),
        categories: joi.array(),
+       tags: joi.array(),
        imgUrl: joi.string(),
        price: joi.number(),
        minPrice: joi.number(),
@@ -205,8 +206,12 @@ router.get( '/search', async ( req, res ) => {
            //this is used in order to take advantage
            //of mongoose validation and middleware capabilities
            const product = req.body.product;
+           //create new tags
+           const tagCreationResults = await createTags( req.body.tags );
+           if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
+
            const catValidationResults = await validateCategories( req.body.categories ); 
-           if( product && catValidationResults.message.toLowerCase() == 'success' ){
+           if( catValidationResults.message.toLowerCase() == 'success' ){
                //update
                if( req.body.sku ) product.sku = req.body.sku;
                if( req.body.name ) product.name = req.body.name;
@@ -232,6 +237,11 @@ router.get( '/search', async ( req, res ) => {
                if( req.body.crossSells ) product.crossSells = req.body.crossSells;
                if( req.body.status ) product.status = req.body.status;
                if( req.body.visibility ) product.visibility = req.body.visibility;
+                //overwrite the existing tags with the updated ones
+                product.tags = [];
+                for( let tag of tagCreationResults.data ){
+                    product.tags.push( { _id: tag._id, name: tag.name } );
+                }
                //save
                const updatedProduct = await product.save();
                if( updatedProduct ){
