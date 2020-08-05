@@ -20,6 +20,10 @@ const ProductSchema = mongoose.Schema( {
         required: true
     },
     categories: [ Object ],
+    tag: [ {
+        _id: mongoose.ObjectId,
+        name: String
+    } ],
     imgUrl: {
         type: String
     },

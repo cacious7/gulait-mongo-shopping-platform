@@ -1,1 +1,5 @@
+### type Ctrl + Alt + r to run request
+### copy requests from request.rest because sublim's rester only works with one url at a time
+
+### Get categories
 GET http://localhost:3000/category

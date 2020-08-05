@@ -18,6 +18,10 @@ const StoreSchema = new mongoose.Schema( {
         required: true
     },
     categories: [ Object ],
+    tag: [ {
+        _id: mongoose.ObjectId,
+        name: String
+    } ],
     addresses: [
         {
             name: String,
