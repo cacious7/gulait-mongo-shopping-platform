@@ -43,7 +43,9 @@ async function createTags( tags ){
 			}else{
 				throw new Error( 'Something went wrong creating new tags. Please check your input or try again' );
 			}
-		}		
+		}else{
+			throw new Error( 'Tags to be created can only be a non empty array. This is a problemm on the server, contact admin.' );
+		}
 	}catch( err ){
 		console.log( "error" );
 		console.log( err );

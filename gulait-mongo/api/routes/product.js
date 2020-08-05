@@ -56,9 +56,6 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         try {
             //validate categories
             const validationResults = await validateCategories( req.body.categories );
-            const tagCreationResults = await createTags( req.body.tags );
-            //if creation fails, exit 
-            if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
 
             if( validationResults.message.toLowerCase() == 'success' ){
                 product = new Product( {
@@ -89,10 +86,16 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
                     storeId: mongoose.Types.ObjectId( req.body.storeId )
                 } );
 
-                //assign each tag to a product
-                for( let tag of tagCreationResults.data ){
-                    product.tags.push( { _id: tag._id, name: tag.name } );
+                if( req.body.tags && Array.isArray( req.body.tags ) && req.body.tags.length > 0 ){
+                    const tagCreationResults = await createTags( req.body.tags );
+                    //if creation fails, exit 
+                    if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
+                    //assign each tag to the product
+                    for( let tag of tagCreationResults.data ){
+                        product.tags.push( { _id: tag._id, name: tag.name } );
+                    }
                 }
+                
     
                 const savedProduct = await product.save();
                
@@ -170,7 +173,7 @@ router.get( '/search', async ( req, res ) => {
        name: joi.string(),
        productType: joi.string(),
        categories: joi.array(),
-       tags: joi.array(),
+       tags: joi.array().allow( null ),
        imgUrl: joi.string(),
        price: joi.number(),
        minPrice: joi.number(),
@@ -206,13 +209,26 @@ router.get( '/search', async ( req, res ) => {
            //this is used in order to take advantage
            //of mongoose validation and middleware capabilities
            const product = req.body.product;
-           //create new tags
-           const tagCreationResults = await createTags( req.body.tags );
-           if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
-
+           
            const catValidationResults = await validateCategories( req.body.categories ); 
            if( catValidationResults.message.toLowerCase() == 'success' ){
                //update
+
+               if( req.body.tags != null &&  req.body.tags && Array.isArray( req.body.tags ) && req.body.tags.length > 0  ){
+                    //create new tags
+                    const tagCreationResults = await createTags( req.body.tags );
+                    if( tagCreationResults.message.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
+
+                    //overwrite the existing tags with the updated ones
+                    product.tags = [];
+                    for( let tag of tagCreationResults.data ){
+                        product.tags.push( { _id: tag._id, name: tag.name } );
+                    }
+               }else if( req.body.tags == null ){
+                    product.tags = null;
+               }
+               
+
                if( req.body.sku ) product.sku = req.body.sku;
                if( req.body.name ) product.name = req.body.name;
                if( req.body.productType ) product.productType = req.body.productType;
@@ -237,11 +253,6 @@ router.get( '/search', async ( req, res ) => {
                if( req.body.crossSells ) product.crossSells = req.body.crossSells;
                if( req.body.status ) product.status = req.body.status;
                if( req.body.visibility ) product.visibility = req.body.visibility;
-                //overwrite the existing tags with the updated ones
-                product.tags = [];
-                for( let tag of tagCreationResults.data ){
-                    product.tags.push( { _id: tag._id, name: tag.name } );
-                }
                //save
                const updatedProduct = await product.save();
                if( updatedProduct ){
