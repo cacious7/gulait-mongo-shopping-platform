@@ -7,6 +7,7 @@ const authenticateAccessToken = require( '../../util/auth/authenticateAccessToke
 const grantSellerAccessToProduct = require( '../../util/auth/grantSellerAccessToProduct' );
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
 const validateCategories = require( '../../util/auth/validateCategories' );
+const createInvalidTags = require( '../../util/auth/createInvalidTags' );
 
 /**
  * Creates a product
@@ -19,6 +20,7 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         name: joi.string().required(),
         productType: joi.string().required(),
         categories: joi.array().required(),
+        tags: joi.array(),
         imgUrl: joi.string(),
         price: joi.number(),
         minPrice: joi.number(),
@@ -54,6 +56,10 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         try {
             //validate categories
             const validationResults = await validateCategories( req.body.categories );
+            const tagCreationResults = await createInvalidTags( req.body.tags );
+            //if creation fails, exit 
+            if( tagCreationResults.toLowerCase() == 'error' ) throw new Error( tagCreationResults.data );
+
             if( validationResults.message.toLowerCase() == 'success' ){
                 product = new Product( {
                     sku: req.body.sku ? req.body.sku : crypto.randomBytes( 5 ).toString( 'hex' ) ,
@@ -82,6 +88,11 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
                     visibility: req.body.visibility,
                     storeId: mongoose.Types.ObjectId( req.body.storeId )
                 } );
+
+                //assign each tag
+                for( let tagName of tags ){
+                  product.tags.push( { _id: mongoose.Types.ObjectId(), name: tagName } );
+                }
     
                 const savedProduct = await product.save();
                
