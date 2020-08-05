@@ -14,6 +14,7 @@ const logoutRouter = require( './api/routes/logout' );
 const productRouter = require( './api/routes/product');
 const categoryRouter = require( './api/routes/category' );
 const storeRouter = require( './api/routes/store' );
+const tagRouter = require( './api/routes/tag' );
 
 //DATABASE CONNECTION
 mongoose.connect(
@@ -65,6 +66,7 @@ app.use( '/logout', logoutRouter );
 app.use( '/product', productRouter );
 app.use( '/category', categoryRouter );
 app.use( '/store', storeRouter );
+app.use( '/tag', tagRouter );
 
 //ERROR HANDLING
 

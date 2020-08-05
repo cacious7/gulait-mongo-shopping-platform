@@ -210,10 +210,9 @@ router.get( '/search', async ( req, res ) => {
            //of mongoose validation and middleware capabilities
            const product = req.body.product;
            
-           const catValidationResults = await validateCategories( req.body.categories ); 
-           if( catValidationResults.message.toLowerCase() == 'success' ){
                //update
 
+               //validate tags
                if( req.body.tags != null &&  req.body.tags && Array.isArray( req.body.tags ) && req.body.tags.length > 0  ){
                     //create new tags
                     const tagCreationResults = await createTags( req.body.tags );
@@ -228,11 +227,19 @@ router.get( '/search', async ( req, res ) => {
                     product.tags = null;
                }
                
+                //validate categories
+                if( req.body.categories && req.body.categories.length > 0 ){
+                    const catValidationResults = await validateCategories( req.body.categories ); 
+                    if( catValidationResults.message.toLowerCase() == 'success' ){
+                        product.categories = req.body.categories;
+                    }else {
+                        throw new Error( catValidationResults.data );
+                    }
+                }
 
                if( req.body.sku ) product.sku = req.body.sku;
                if( req.body.name ) product.name = req.body.name;
                if( req.body.productType ) product.productType = req.body.productType;
-               if( req.body.categories && req.body.categories.length > 0 ) product.categories = req.body.categories;
                if( req.body.imgUrl ) product.imgUrl = req.body.imgUrl;
                if( req.body.price ) product.price = req.body.price;
                if( req.body.minPrice ) product.minPrice = req.body.minPrice;
@@ -263,9 +270,6 @@ router.get( '/search', async ( req, res ) => {
                }else{
                    throw new Error( 'Something went wrong while saving the updated product' );
                }
-           }else {
-               throw new Error( catValidationResults.data );
-           }
        }
    } catch ( err ) {
        return res.status( 500 ).json( { 

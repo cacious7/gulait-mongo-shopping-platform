@@ -7,7 +7,7 @@ const Category = require( "../models/Category" );
  * @param { Object } req the request from the user
  * @param { Object } res A response object used to respond to the user interface
  */
-router.get( '/', async ( req, res ) => {
+router.get( '/list', async ( req, res ) => {
     const categories = await Category.findOne( {} );
     if( categories ){
         return res.status( 200 ).json( { message: 'Success', data: categories } );

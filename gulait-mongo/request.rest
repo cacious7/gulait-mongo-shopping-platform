@@ -25,24 +25,21 @@ Content-Type: application/json
 }
 
 {
-    "message":"successful login",
-    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjQ0ODE2LCJleHAiOjE1OTY2NDg0MTZ9.WXvmaFY2W-H9hC-CAMBZCsH_j5E-paeyRsGi6Pd7Enc",
-    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjQ0ODE2LCJleHAiOjE1OTY3MzEyMTZ9.hDU-S6vv2Dfjc_h5KPCHc6Y9z5OwCT1nsLRkcN3kkfQ",
-    "role":"seller"
+    "message":"SUCCESS",
+    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjU1NDgyLCJleHAiOjE1OTY2NTkwODJ9.54ExrmnoCM8NToC6uTkJeHQbzYtQT8hcPQUWWbTrIpg"
 }
 
 
 ### CREATE PRODUCT - only for authenicated users
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjQ4OTE4LCJleHAiOjE1OTY2NTI1MTh9.DC0wwvp4CnffGFqCVBTClasfmzcPUwkRRSrfjUmpXPg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjU1NDgyLCJleHAiOjE1OTY2NTkwODJ9.54ExrmnoCM8NToC6uTkJeHQbzYtQT8hcPQUWWbTrIpg
 Content-Type: application/json
 
 {
-    "name": "Riddick slim fit T-shirt",
+    "name": "Riddick Red shirt",
     "storeId": "5f18325d6b8fba10a8ff6f5a",
     "status": "online",
     "productType": "simple",
-    "tags": [ "dope", "extrme qualit", "deliery available", "star clothes", "pitch black" ],
     "categories": [ {
         "Products": {
             "new": {
@@ -57,22 +54,12 @@ Content-Type: application/json
 
 ### UPDATE Product - Needs authorization
 PATCH http://localhost:3000/product/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY1MzUyNTd9.fj2Qw-tA-NtWfye_pnrISNvwlQQsgO8YCNMmGBuMTP4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjU1NDgyLCJleHAiOjE1OTY2NTkwODJ9.54ExrmnoCM8NToC6uTkJeHQbzYtQT8hcPQUWWbTrIpg
 Content-Type: application/json
 
 {
-    "id": "5f27078b5715ad17b025655a",
-    "name": "Buggy Hoodie",
-    "productType": "simple",
-    "categories": [ {
-        "Products": {
-            "new": {
-                "Women_apostrophe_s_Fashion": {
-                    "Clothing": true
-                }
-            }
-        }
-    } ]
+    "id": "5f2af33c6617e231bc5f8175",
+    "tags": [ "bape swag" ]
 }
 
 ### CREATE PRODUCT - for public users, no authentication
@@ -118,8 +105,11 @@ Content-Type: application/json
     "password": "Cacnga@153."
 }
 
-### CATEGORY
-GET http://localhost:3000/category/
+### CATEGORY LIST
+GET http://localhost:3000/category/list
+
+### TAG LIST
+GET http://localhost:3000/tag/list
 
 ### HOME PAGE
 GET http://localhost:3000/
