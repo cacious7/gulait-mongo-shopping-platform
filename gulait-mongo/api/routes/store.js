@@ -2,34 +2,7 @@ const router = require( 'express' ).Router();
 const authenticateAccessToken = require( '../../util/auth/authenticateAccessToken' );
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
 const joi = require( 'joi' );
-const Store = require( '../models/Store' );\
-const generateCategoryQuery = require( '../../util/auth/generateCategoryQuery' );
-
-/**
- * Get a list of stores
- */
-router.get( async () => {
-    conts validationSchema = joi.object().keys( {
-        category: joi.string().allow( '' )
-    } );
-
-    joi.validate( req.body, validationSchema, ( err, results ) => {
-        if( err ) res.status( 401 ).json( {
-            message: 'Error', data: err  
-        } );
-    } );
-
-    if( !headersSent ){
-        const query = generateCategoryQuery( req.body.category );
-        if( query ){
-            const categories = Store.find( query == true );
-            if( categories ){
-                return
-            }  
-        }
-        const store = await Store.find( {} );
-    }
-} );
+const Store = require( '../models/Store' );
 
 /**
  * update a store
@@ -85,6 +58,6 @@ router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, asyn
 /**
  * Delete a store
  */
-router.delete();
+//router.delete();
 
 module.exports = router;

@@ -13,7 +13,7 @@ const refreshToken = require( './api/routes/refreshToken' );
 const logoutRouter = require( './api/routes/logout' );
 const productRouter = require( './api/routes/product');
 const categoryRouter = require( './api/routes/category' );
-const storeRouter = require( './api/routes/category' );
+const storeRouter = require( './api/routes/store' );
 
 //DATABASE CONNECTION
 mongoose.connect(

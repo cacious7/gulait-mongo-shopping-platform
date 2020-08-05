@@ -1,6 +1,21 @@
 const router = require( 'express' ).Router();
 const Category = require( "../models/Category" );
 
+/**
+ * Get the available list of categories
+ * Does not require validation
+ * @param { Object } req the request from the user
+ * @param { Object } res A response object used to respond to the user interface
+ */
+router.get( '/', async ( req, res ) => {
+    const categories = await Category.findOne( {} );
+    if( categories ){
+        return res.status( 200 ).json( { message: 'Success', data: categories } );
+    } else {
+        return res.status( 500 ).json( { message: 'Error', data: 'No categories where found. Please contact admin.' } );
+    }
+} );
+
 //load categories
 router.post( '/load', async ( req, res) => {
     try {

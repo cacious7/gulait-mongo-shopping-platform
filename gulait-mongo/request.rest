@@ -1,12 +1,21 @@
 ###
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MzkzMTYzLCJleHAiOjE1OTY0Nzk1NjN9.jKH9eEoBh3LOIYMPQTH23mG11vvv8cUSzUxb_ib-oPc
-
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY2MTgwNTd9.dTUUJoVZ1_IpGswR6x5dl51gSO3DlVG09oR0YNXZmjI
 
 ###
 DELETE http://localhost:3000/logout
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVlZmM4MjZhMjhmZGIzMDE1MDM2NjcxNiIsIm5hbWUiOiJidXllciJ9XX0sImlhdCI6MTU5NTE1Mjg5OSwiZXhwIjoxNTk1MjM5Mjk5fQ.7xrz8C1bD9EPowZTH5XCxv-HyJwb1FAHx_RmLKFjiYs
+
+{
+    "message":"successful login",
+    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY1MzUyNTd9.fj2Qw-tA-NtWfye_pnrISNvwlQQsgO8YCNMmGBuMTP4",
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY2MTgwNTd9.dTUUJoVZ1_IpGswR6x5dl51gSO3DlVG09oR0YNXZmjI",
+    "role":"seller"
+}
+
+### STORE UPDATING
+PATCH http://localhost:3000/store
+Authorization: Bearer 
 
 ###
 POST http://localhost:3000/login
@@ -17,13 +26,18 @@ Content-Type: application/json
     "password": "Cacnga@153."
 }
 
+{
+    "message":"SUCCESS",
+    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTM5ODYyLCJleHAiOjE1OTY1NDM0NjJ9.NAS1z1oQNtiSu0sHKIL-tUOGlz8f4T-ZNfVsQRuCPAA"
+}
+
 ### CREATE PRODUCT - only for authenicated users
 POST http://localhost:3000/product/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MzkzMTYzLCJleHAiOjE1OTYzOTY3NjN9.ADXwx-f586uQUWU_hqLRL1OZ6YeWftTjmDm2lZeep_g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTM5ODYyLCJleHAiOjE1OTY1NDM0NjJ9.NAS1z1oQNtiSu0sHKIL-tUOGlz8f4T-ZNfVsQRuCPAA
 Content-Type: application/json
 
 {
-    "name": "Street Hoodie",
+    "name": "Nike T-shirt",
     "storeId": "5f18325d6b8fba10a8ff6f5a",
     "status": "online",
     "productType": "simple",
@@ -31,17 +45,16 @@ Content-Type: application/json
         "Products": {
             "new": {
                 "Men_apostrophe_s_Fashion": {
-                    "Clothing": true
+                    "Shoes": true
                 }
             }
         }
     } ]
 }
 
-{"message":"SUCCESS","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NDEzMTk5LCJleHAiOjE1OTY0MTY3OTl9.dh7zBdXWkHHwxzhwLXxMZ2dmoJX7xZAD6z9dYHoQNKo"}
 ### UPDATE Product - Needs authorization
 PATCH http://localhost:3000/product/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NDEzMTk5LCJleHAiOjE1OTY0MTY3OTl9.dh7zBdXWkHHwxzhwLXxMZ2dmoJX7xZAD6z9dYHoQNKo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY1MzUyNTd9.fj2Qw-tA-NtWfye_pnrISNvwlQQsgO8YCNMmGBuMTP4
 Content-Type: application/json
 
 {
@@ -69,11 +82,11 @@ Content-Type: application/json
 
 ### DELETE Product - Needs authorization
 DELETE http://localhost:3000/product/delete
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2MTkxMDg3LCJleHAiOjE1OTYxOTQ2ODd9.eqICmh-6VepqmQU6fZkgNY_gtWu9LJk5ZWOy_YG0hMA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NTMxNjU3LCJleHAiOjE1OTY1MzUyNTd9.fj2Qw-tA-NtWfye_pnrISNvwlQQsgO8YCNMmGBuMTP4
 Content-Type: application/json
 
 {
-    "id": "5f23fa64bcbda017644a47f7"
+    "id": "5f1debe9b6b4b23ed4659a11"
 }
 
 
@@ -103,7 +116,7 @@ Content-Type: application/json
 }
 
 ### CATEGORY
-POST http://localhost:3000/category/load
+GET http://localhost:3000/category/
 
 ### HOME PAGE
 GET http://localhost:3000/
