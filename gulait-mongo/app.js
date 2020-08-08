@@ -70,7 +70,7 @@ app.use( '/tag', tagRouter );
 
 //ERROR HANDLING
 
-//ERROR HANNDLING FOR ALL REQUEST THAT DONT HAVE HANDLLERS/CONTROLERS
+//ERROR HANNDLING FOR ALL REQUEST THAT DONT HAVE HANDLERS/CONTROLERS
 app.use( ( req, res, next ) => {
     const error = new Error('Sorry, the resource your are looking for was NOT FOUND!');
     error.status = 404;
