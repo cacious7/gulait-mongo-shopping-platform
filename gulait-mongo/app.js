@@ -68,6 +68,10 @@ app.use( '/category', categoryRouter );
 app.use( '/store', storeRouter );
 app.use( '/tag', tagRouter );
 
+
+//File handling - to serve static files such as css, img or js files
+app.use( express.static( 'views' ) );
+
 //ERROR HANDLING
 
 //ERROR HANNDLING FOR ALL REQUEST THAT DONT HAVE HANDLERS/CONTROLERS
