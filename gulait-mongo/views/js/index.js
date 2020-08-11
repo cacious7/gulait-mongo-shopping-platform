@@ -28615,19 +28615,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 
+ //import 'bootstrap/dist/css/bootstrap.css';
 
-react_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "We are you home"), document.getElementById('root'));
+react_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "We are your home"), document.getElementById('root'));
+
+/***/ }),
+
+/***/ "./resources/sass/style.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/style.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
 /***/ 0:
-/*!**************************************!*\
-  !*** multi ./resources/js/index.jsx ***!
-  \**************************************/
+/*!******************************************************************!*\
+  !*** multi ./resources/js/index.jsx ./resources/sass/style.scss ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\gulait-mongo\resources\js\index.jsx */"./resources/js/index.jsx");
+__webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\gulait-mongo\resources\js\index.jsx */"./resources/js/index.jsx");
+module.exports = __webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\gulait-mongo\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })

@@ -1,0 +1,4 @@
+{
+    "verbose": true,
+    "ignore": [ "./views", "./node_modules", "./resources" ]
+}

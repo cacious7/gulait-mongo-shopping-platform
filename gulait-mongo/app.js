@@ -5,6 +5,33 @@ const mongoose = require( 'mongoose' );
 const bodyParser = require( 'body-parser' );
 const morgan_log = require( 'morgan' );
 
+//Live Reloading
+const liveReload = require( 'livereload' );
+const connectLiveReload = require( 'connect-livereload' );
+const path = require( 'path' );
+
+const publicPath = path.join( __dirname, 'views' );
+
+//instruct livereload server to watch the pucblic folder for changes and reload if so
+const liveReloadServer = liveReload.createServer();
+liveReloadServer.watch( publicPath );
+
+//refresh the browser when the server loads
+//only on creation of a connection and only once
+liveReloadServer.server.once( 'connection', () => {
+    //however, we will have to wait for the conncect-livereload to 
+    //make its handshake ans since we cant hook into that,
+    //we will simply wait a little while
+    setTimeout( () => {
+        liveReloadServer.refresh( '/' );
+    }, 100 );
+    
+} );
+
+//middleware to connect livereloading functionality
+//it adds a script tag to the html file and opens connection between server and client
+app.use( connectLiveReload() );
+
 //IMPORT ROUTES
 const homeRouter = require( './api/routes/home' );
 const loginRouter = require( './api/routes/login' );

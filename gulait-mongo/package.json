@@ -4,7 +4,8 @@
   "description": "creation of a gulait platform that uses mongo db",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.js --config nodemon.json",
+    "ui": "browser-sync start --proxy=localhost:3000 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify",
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "npm run development -- --watch",
@@ -19,19 +20,29 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "boostrap": "^2.0.0",
+    "bootstrap": "^4.5.2",
+    "connect-livereload": "^0.6.1",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "laravel-mix": "^5.0.4",
+    "livereload": "^0.9.1",
     "mongoose": "^5.9.20",
     "morgan": "^1.10.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",
-    "nodemon": "^2.0.4"
+    "browser-sync": "^2.26.12",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "nodemon": "^2.0.4",
+    "resolve-url-loader": "^3.1.0",
+    "sass-loader": "^8.0.2"
   }
 }
