@@ -6,31 +6,31 @@ const bodyParser = require( 'body-parser' );
 const morgan_log = require( 'morgan' );
 
 //Live Reloading
-const liveReload = require( 'livereload' );
-const connectLiveReload = require( 'connect-livereload' );
-const path = require( 'path' );
+// const liveReload = require( 'livereload' );
+// const connectLiveReload = require( 'connect-livereload' );
+// const path = require( 'path' );
 
-const publicPath = path.join( __dirname, 'views' );
+//const publicPath = path.join( __dirname, 'views' );
 
 //instruct livereload server to watch the pucblic folder for changes and reload if so
-const liveReloadServer = liveReload.createServer();
-liveReloadServer.watch( publicPath );
+// const liveReloadServer = liveReload.createServer();
+// liveReloadServer.watch( publicPath );
 
 //refresh the browser when the server loads
 //only on creation of a connection and only once
-liveReloadServer.server.once( 'connection', () => {
-    //however, we will have to wait for the conncect-livereload to 
-    //make its handshake ans since we cant hook into that,
-    //we will simply wait a little while
-    setTimeout( () => {
-        liveReloadServer.refresh( '/' );
-    }, 100 );
+// liveReloadServer.server.once( 'connection', () => {
+//     //however, we will have to wait for the conncect-livereload to 
+//     //make its handshake ans since we cant hook into that,
+//     //we will simply wait a little while
+//     setTimeout( () => {
+//         liveReloadServer.refresh( '/' );
+//     }, 100 );
     
-} );
+// } );
 
 //middleware to connect livereloading functionality
 //it adds a script tag to the html file and opens connection between server and client
-app.use( connectLiveReload() );
+//app.use( connectLiveReload() );
 
 //IMPORT ROUTES
 const homeRouter = require( './api/routes/home' );
@@ -124,5 +124,39 @@ app.use( ( error, req, res, next ) => {
         }
     } );
 } ); 
+
+//TEMPORARY SERVER SETUP
+
+//first import the Http protocol
+const http = require( 'http' );
+
+//then set the port. most hosting providers offer 
+//an environment variable that contains 
+//a port number you can use, if not 
+//create a default 
+const port = process.env.port || 3000;
+
+//create a server running on http
+//++a function can be passed to this 
+//function to handle incoming requests
+const server = http.createServer( app );
+
+//now we make the server listen to the
+//right port number for http requests
+
+//Auto reload
+const reload = require( 'reload' );
+
+// Reload code here
+reload(app, { verbose: true }).then(function (reloadReturned) {
+    // reloadReturned is documented in the returns API in the README
+  
+    // Reload started, start web server
+    server.listen(port, function () {
+      console.log('Web server listening on port ' + app.get('port'))
+    })
+  }).catch(function (err) {
+    console.error('Reload could not start, could not start server/sample app', err)
+  })
 
 module.exports = app;

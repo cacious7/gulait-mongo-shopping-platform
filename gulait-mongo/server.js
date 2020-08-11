@@ -18,4 +18,18 @@ const server = http.createServer( app );
 
 //now we make the server listen to the
 //right port number for http requests
-server.listen( port );
+
+//Auto reload
+const reload = require( 'reload' );
+
+// Reload code here
+reload(app, { verbose: true }).then(function (reloadReturned) {
+    // reloadReturned is documented in the returns API in the README
+  
+    // Reload started, start web server
+    server.listen(port, function () {
+      console.log('Web server listening on port ' + app.get('port'))
+    })
+  }).catch(function (err) {
+    console.error('Reload could not start, could not start server/sample app', err)
+  })

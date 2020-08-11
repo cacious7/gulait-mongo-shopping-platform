@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": [ "./views", "./node_modules", "./resources" ]
+    "ignore": [ "./views", "./node_modules", "./resources", "mix-manifest.json" ]
 }
