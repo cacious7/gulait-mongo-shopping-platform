@@ -1,8 +1,54 @@
+/*
+BreakPoints
+
+lg = ≥992px
+md = ≥768px
+sm = ≥576px
+xl = ≥1200px
+xs = <576px
+
+*/
+$breakPoints: ( 
+    'lg': 992px,
+    'md': 768px, 
+    'sm': 576px, 
+    'xl': 1200px, 
+    'xs': 576px 
+);
+
+/* Colors */
+$lightGrey: #fcfcfc;
+$mediumGrey: #f3f3f3;
+$black: #0f0f0f;
+
+/* Borders */
+$borderRadius: 5px;
+
 body {
-    background-color: #fdfdfd;
+    background-color: $lightGrey !important;
 }
 
-.signup-form {
+.center-children {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sign-up-form-parent {
     background: white;
-    box-shadow: 2px 2px #fdfdfd;
+    box-shadow: 2px 2px 2px $mediumGrey;
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-radius: $borderRadius !important;
+    border: 1px solid $black !important;
+
+    input {
+        border: 1px solid blue;
+    }
+
+}
+
+.signup-page-logo {
+    max-width: 5rem;
 }
