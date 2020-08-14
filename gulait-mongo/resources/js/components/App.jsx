@@ -3,12 +3,12 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './Navbar';
+import NavigationBar from './NavigationBar';
 
 const App = () => {
     return ( 
         <Router>
-            <Navbar></Navbar>
+            <NavigationBar></NavigationBar>
             <Switch>
                 <Route path='/signup' component={ SignUp }></Route>
                 <Route path='/home' component={ Home } ></Route>
