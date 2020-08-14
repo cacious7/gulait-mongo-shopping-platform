@@ -1,4 +1,9 @@
 body {
-  background-color: white;
+  background-color: #fdfdfd;
+}
+
+.signup-form {
+  background: white;
+  box-shadow: 2px 2px #fdfdfd;
 }
 
