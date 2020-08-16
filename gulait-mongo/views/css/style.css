@@ -26,20 +26,6 @@
   /* Legacy iOS */
 }
 
-/* Assign fonts */
-
-* {
-  font-family: "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: 15px;
-}
-
-.gi-heading {
-  font-family: "Nunito", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
 /*
 BreakPoints
 
@@ -55,8 +41,28 @@ xs = <576px
 
 /* Borders */
 
+/* Backgrounds */
+
 body {
   background-color: #fcfcfc !important;
+}
+
+/* Assign fonts */
+
+* {
+  font-family: "Open Sans", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 15px;
+}
+
+.gi-heading {
+  font-family: "Nunito", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  margin: 1rem 0 2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tiny-text {
+  font-size: 12px !important;
 }
 
 .center-children {
@@ -71,13 +77,22 @@ body {
   box-shadow: 2px 2px 2px #f3f3f3;
   margin: 1rem 0;
   padding: 1rem 0;
-  border-radius: 15px !important;
+  border-radius: 15px;
   border: 1px solid #0f0f0f !important;
 }
 
 .sign-up-form-parent input {
-  border: 1px solid blue;
-  border-radius: 7.5px !important;
+  border-radius: 7.5px;
+  border: 1px solid #1385d5 !important;
+}
+
+.sign-up-form-parent button {
+  display: flex;
+  margin: auto;
+  border-radius: 7.5px;
+  padding: 0.4rem 2rem;
+  background: #1385d5;
+  background: linear-gradient(83deg, #0f75bc 0%, #1385d5 100%);
 }
 
 .signup-page-logo {
