@@ -11,18 +11,17 @@ const SignUpForm = () => {
     return( 
         <Container>
             <Row className='center-children' >
-                <img src='./images/png/logo.png' className='signup-page-logo'></img>
-                <Col xs={11} sm={8} md={5} lg={5} xl={6}  className='sign-up-form-parent' >
+                <img alt='logo' src='./images/png/logo.png' className='signup-page-logo'></img>
+                <Col xs={11} sm={8} md={4} lg={4} xl={4}  className='sign-up-form-parent' >
                     <Form id='signup-form'>
+                        <h6 className='gi-heading' style={ { textAlign: 'center' } }>Login</h6>
                         <Form.Group controlId='email'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' placeholder='Enter your email' required />
+                            <Form.Control type='email' placeholder='Enter your email or username' required />
                             <Form.Text className='text-muted'>
                                 We'll never share your email.
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId='password'>
-                            <Form.Label>Password</Form.Label>
                             <Form.Control type='password' placeholder='Password' required />
                         </Form.Group>
                         <Form.Group controlId='signupSeller'>
