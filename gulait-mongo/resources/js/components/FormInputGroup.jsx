@@ -58,7 +58,8 @@ const FormInputGroup = ( props ) => {
 
             return ( 
                 <Form.Control 
-                    type={ props.control.type } 
+                    type={ props.control.type }
+                    className={ props.control.className ? props.control.className : 'empty' } 
                     placeholder={ props.control.placeholder ? props.control.placeholder : '' } 
                     required={ props.control.required ? props.control.required : false }
                     onClick={ props.control.onClick ? props.control.onClick : () => {} }

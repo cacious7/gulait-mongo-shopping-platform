@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import isObject from '../../../util/isObject'; 
 import FormInputGroup from '../components/FormInputGroup';
+import $ from 'jquery';
 
 const SignUpForm = () => {
     //represents whether the user is signing up
@@ -16,6 +17,8 @@ const SignUpForm = () => {
     const [ asSeller, setAsSeller ] = useState( false );
     //the store url to be according to the name
     const [ storeUrl, setStoreUrl ] = useState( 'gulait.com/store/' );
+    //a class that shows whether a password is valid or not
+    const [ validatePassword, setValidatePassword ] = useState( 'empty' );
 
     /**
      * Adds or removes seller signup support
@@ -58,7 +61,7 @@ const SignUpForm = () => {
                     </Form.Text>
                 </Form.Group>
                 <Form.Group controlId='store-name'>
-                    <Form.Control type='text' placeholder='Store name.'  onChange={ updateStoreUrl } required />
+                    <Form.Control type='text' placeholder='Store name'  onChange={ updateStoreUrl } required />
                     <Form.Text className='text-muted'>
                         This cannot be changed.<br></br>
                         store url: <strong className='tiny-text' >{ storeUrl }</strong>
@@ -75,8 +78,20 @@ const SignUpForm = () => {
      */
     const comfirmPasswordText = () => {
          return ( <p className='tiny-text'><strong className='tiny-text' > Re-enter your password </strong>to confirm it is correctly entered.</p> )
-    } 
+    }
 
+    const confirmPassword = ( event ) => {
+        const password = document.getElementById( 'password' ).value;
+        const confirmPassword = event.currentTarget.value;
+        console.log( confirmPassword );
+        if( confirmPassword === '' ){
+            setValidatePassword( 'empty' );
+        } else {
+            confirmPassword === password ? setValidatePassword( 'valid' ) : setValidatePassword( 'invalid' );
+        }
+
+        
+    }
 
     return( 
         <Container>
@@ -97,7 +112,7 @@ const SignUpForm = () => {
                             text={ { className: 'text-muted', content: `Create a password that's easy to remember but tough for others to guess.` } }
                         />
                         <FormInputGroup id='confirm-password' 
-                            control={ { type: 'password', placeholder: 'Confirm password', required: true } }
+                            control={ { className: { validatePassword } ,type: 'password', placeholder: 'Confirm password', required: true, onChange: confirmPassword } }
                             text={ { className: 'text-muted', content: comfirmPasswordText() } }
                         />
                         <FormInputGroup id='signup-seller' check={ { type: 'checkbox', label: 'Be a Seller', onClick: handleSignUpSeller } } />

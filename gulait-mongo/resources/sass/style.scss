@@ -52,6 +52,19 @@ $mediumGrey: #f3f3f3;
 $black: #0f0f0f;
 $grey: #6C757D;
 
+/* validate input fields */
+.invalid {
+    border-bottom: 4px solid red;
+}
+
+.valid {
+    border-bottom: 4px solid green;
+}
+
+.empty {
+    
+}
+
 /* Borders */
 $borderRadius: ( 
     "sm": 3.75px, 

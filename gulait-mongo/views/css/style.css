@@ -39,6 +39,16 @@ xs = <576px
 
 /* Colors */
 
+/* validate input fields */
+
+.invalid {
+  border-bottom: 4px solid red;
+}
+
+.valid {
+  border-bottom: 4px solid green;
+}
+
 /* Borders */
 
 /* Backgrounds */
