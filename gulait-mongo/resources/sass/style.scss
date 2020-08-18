@@ -84,6 +84,13 @@ body {
     font-weight: 600;
 }
 
+//checkboxes
+.form-check {
+    input, label {
+        cursor: pointer;
+    } 
+}
+
 .tiny-text {
     font-size: 12px !important;
 }

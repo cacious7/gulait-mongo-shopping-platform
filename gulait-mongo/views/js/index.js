@@ -48510,6 +48510,112 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./resources/js/components/FormInputGroup.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/FormInputGroup.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
+
+/**
+ * Creates a react bootstrap Form.Group component easily
+ * @param {Object} props has the properties passed to this component
+ * @return { HTMLElement } 
+ */
+
+var FormInputGroup = function FormInputGroup(props) {
+  /**
+   * Throws an Error if a type property is ommited from one of the component's
+   * properties object
+   * @param { Object } props properties passed to the component 
+   * @param { String } prop the property to check for a type attribute
+   * @throws { Error } an error indicating that a type property is required
+   * @returns { void }
+   */
+  var throwErrorIfNoType = function throwErrorIfNoType(props, prop) {
+    if (!props[prop].type || props[prop].type == '') throw new Error("formInputGroup ".concat(prop, "'s type property is required"));
+  };
+
+  var createFormCheck = function createFormCheck(props) {
+    //create Form.Check element
+    if (props.hasOwnProperty('check')) {
+      //throw an error if type is not defined
+      throwErrorIfNoType(props, 'check'); //trows an error if label is not defined or empty
+
+      if (!props.check.label || props.check.label == '') throw new Error("formInputGroup check's label property is required");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Check, {
+        type: props.check.type,
+        label: props.check.label,
+        onClick: props.check.onClick ? props.check.onClick : function () {},
+        onChange: props.check.onChange ? props.check.onChange : function () {},
+        onFocus: props.check.onFocus ? props.check.onFocus : function () {}
+      });
+    }
+  };
+  /**
+   * Creates a Form Control element based on the props provided
+   * @param { Object } props properties passed to the component
+   * @return { HTMLElement }
+   */
+
+
+  var createFormControl = function createFormControl(props) {
+    //create Form.Control element
+    if (props.hasOwnProperty('control')) {
+      //throw an error is type is not defined
+      throwErrorIfNoType(props, 'control');
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+        type: props.control.type,
+        placeholder: props.control.placeholder ? props.control.placeholder : '',
+        required: props.control.required ? props.control.required : false,
+        onClick: props.control.onClick ? props.control.onClick : function () {},
+        onChange: props.control.onChange ? props.control.onChange : function () {},
+        onFocus: props.control.onFocus ? props.control.onFocus : function () {}
+      });
+    }
+  };
+  /**
+   * Creates a Form Text element based on the props provided
+   * @param { Object } props properties passed to the component
+   * @return { HTMLElement }
+   */
+
+
+  var createFormText = function createFormText(props) {
+    //create Form.Text element
+    if (props.hasOwnProperty('text')) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
+        className: props.text.className ? props.text.className : ''
+      }, props.text.content);
+    }
+  };
+  /**
+   * Creates child elements based on properties passed to the component
+   * @param { Object } props properties passed to the component from which to create child elements
+   * @return { HTMLElement } 
+   */
+
+
+  var formGroup = function formGroup(props) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+      controlId: props.id
+    }, createFormControl(props), createFormText(props), createFormCheck(props));
+  };
+
+  return formGroup(props);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FormInputGroup);
+
+/***/ }),
+
 /***/ "./resources/js/components/NavigationBar.jsx":
 /*!***************************************************!*\
   !*** ./resources/js/components/NavigationBar.jsx ***!
@@ -48572,20 +48678,109 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _util_isObject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/isObject */ "./util/isObject.js");
+/* harmony import */ var _util_isObject__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_util_isObject__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/FormInputGroup */ "./resources/js/components/FormInputGroup.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
 
 var SignUpForm = function SignUpForm() {
+  //represents whether the user is signing up
+  //as a seller or as a buyer
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      asSeller = _useState2[0],
+      setAsSeller = _useState2[1]; //the store url to be according to the name
+
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('gulait.com/store/'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      storeUrl = _useState4[0],
+      setStoreUrl = _useState4[1];
   /**
-   * 
+   * Adds or removes seller signup support
    * @param { Object } event the event that was activated 
    * @return { void } 
    */
+
+
   var handleSignUpSeller = function handleSignUpSeller(event) {
-    event.preventDefault();
-    console.log(event.currentTarget);
-    alert('Clicked');
+    if (_util_isObject__WEBPACK_IMPORTED_MODULE_3___default()(event.currentTarget)) {
+      //toggle asSeller
+      setAsSeller(event.currentTarget.checked);
+    }
+  };
+  /**
+   * Updates what the store url will be as the name changes
+   * @param { Object } event the event that was activated 
+   * @return { void } 
+   */
+
+
+  var updateStoreUrl = function updateStoreUrl(event) {
+    var storeNameElem = event.currentTarget;
+
+    if (_util_isObject__WEBPACK_IMPORTED_MODULE_3___default()(storeNameElem) && asSeller) {
+      //change to lowercase and replace a space with a hyphen
+      setStoreUrl("gulait.com/store/".concat(storeNameElem.value.toLowerCase().replace(/ /g, '-')));
+    }
+  };
+  /**
+   * Adds Seller sign up support to the sign up form
+   * @return { void }
+   */
+
+
+  var sellerSignUpSupport = function sellerSignUpSupport() {
+    if (!asSeller) return;
+    console.log("User is a: ".concat(asSeller));
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+      controlId: "store-email"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+      type: "email",
+      placeholder: "Store email"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
+      className: "text-muted"
+    }, "Is it the same as your personal email? You can leave it blank.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+      controlId: "store-name"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
+      type: "text",
+      placeholder: "Store name.",
+      onChange: updateStoreUrl,
+      required: true
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
+      className: "text-muted"
+    }, "This cannot be changed.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "store url: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "tiny-text"
+    }, storeUrl))));
+  };
+  /**
+   * Creates an html element for the comfirm password Form.Text content
+   * @return { HTMLElement } Returns an html element for the comfirm password Form.Text content
+   */
+
+
+  var comfirmPasswordText = function comfirmPasswordText() {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "tiny-text"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "tiny-text"
+    }, " Re-enter your password "), "to confirm it is correctly entered.");
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], {
@@ -48608,47 +48803,68 @@ var SignUpForm = function SignUpForm() {
     style: {
       textAlign: 'center'
     }
-  }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "user-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "text",
-    placeholder: "User name",
-    required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "first-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "text",
-    placeholder: "First name",
-    required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "last-name"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "text",
-    placeholder: "Last name",
-    required: true
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "email"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "email",
-    placeholder: "email",
-    required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
-    className: "text-muted"
-  }, "Enter a valid email.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "password"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
-    type: "password",
-    placeholder: "Password",
-    required: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
-    className: "text-muted"
-  }, "Create a password that's easy to remember but tough for others to guess.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    controlId: "signupSeller"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Check, {
-    type: "checkbox",
-    label: "Be a Seller",
-    onClick: handleSignUpSeller
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "user-name",
+    control: {
+      type: 'text',
+      placeholder: 'User name',
+      required: true
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "first-name",
+    control: {
+      type: 'text',
+      placeholder: 'First name',
+      required: true
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "last-name",
+    control: {
+      type: 'text',
+      placeholder: 'Last name',
+      required: true
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "personal-email",
+    control: {
+      type: 'email',
+      placeholder: 'Personal email',
+      required: true
+    },
+    text: {
+      className: 'text-muted',
+      content: 'Enter a valid email. You can enter your store email if no personal one is available. But you need to have access to it. This is only advised if you sign up as a seller.'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "password",
+    control: {
+      type: 'password',
+      placeholder: 'Password',
+      required: true
+    },
+    text: {
+      className: 'text-muted',
+      content: "Create a password that's easy to remember but tough for others to guess."
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "confirm-password",
+    control: {
+      type: 'password',
+      placeholder: 'Confirm password',
+      required: true
+    },
+    text: {
+      className: 'text-muted',
+      content: comfirmPasswordText()
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: "signup-seller",
+    check: {
+      type: 'checkbox',
+      label: 'Be a Seller',
+      onClick: handleSignUpSeller
+    }
+  }), sellerSignUpSupport(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
     variant: "primary",
     type: "submit"
   }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
@@ -48753,6 +48969,32 @@ react_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEB
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./util/isObject.js":
+/*!**************************!*\
+  !*** ./util/isObject.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Tests a variable to check if it is an object.
+ * @param { Object } object the object to be tested
+ * @returns { Boolean } true if the variable is an object and false otherwise
+ */
+function isObject(object) {
+  if (Array.isArray(object)) {
+    return false;
+  } else if (object instanceof Object) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+module.exports = isObject;
 
 /***/ }),
 

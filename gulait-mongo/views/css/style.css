@@ -61,6 +61,11 @@ body {
   font-weight: 600;
 }
 
+.form-check input,
+.form-check label {
+  cursor: pointer;
+}
+
 .tiny-text {
   font-size: 12px !important;
 }
