@@ -48542,6 +48542,12 @@ var FormInputGroup = function FormInputGroup(props) {
   var throwErrorIfNoType = function throwErrorIfNoType(props, prop) {
     if (!props[prop].type || props[prop].type == '') throw new Error("formInputGroup ".concat(prop, "'s type property is required"));
   };
+  /**
+   * Creates a Form.Check react-bootstrap element
+   * @param { Object } props  properties passed to the component
+   * @returns { HTMLElement }
+   */
+
 
   var createFormCheck = function createFormCheck(props) {
     //create Form.Check element
