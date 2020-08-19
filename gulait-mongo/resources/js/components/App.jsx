@@ -2,7 +2,7 @@ import React from 'react';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './NavigationBar';
 
 const App = () => {

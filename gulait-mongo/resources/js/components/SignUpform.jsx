@@ -124,7 +124,7 @@ const SignUpForm = () => {
                             Already have an account? <Link to='/login' className='tiny-text' ><strong>Login here.</strong></Link>
                         </Form.Text>
                         <div className='auth-page-policies' >
-                            <Form.Text className='center-children' style={ { marginTop: '1rem', color: '#0f0f0f' } }>
+                            <Form.Text style={ { marginTop: '1rem', color: '#0f0f0f' } }>
                                 <Link to='/login' className='tiny-text text-muted' >Privacy</Link> | <Link to='/login' className='tiny-text text-muted' >Terms of Service</Link>
                             </Form.Text>
                         </div>

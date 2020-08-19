@@ -1,3 +1,5 @@
+@use 'bootstrap/scss/bootstrap.scss';
+
 /* FONTS */
 
 /* Nunito-regular - latin */
@@ -26,7 +28,7 @@
          url('../fonts/open-sans-v17-latin/open-sans-v17-latin-regular.woff') format('woff'), /* Modern Browsers */
          url('../fonts/open-sans-v17-latin/open-sans-v17-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
          url('../fonts/open-sans-v17-latin/open-sans-v17-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
-  }
+}
 
 /*
 BreakPoints
@@ -38,7 +40,7 @@ xl = ≥1200px
 xs = <576px
 
 */
-$breakPoints: ( 
+$break-points: ( 
     'lg': 992px,
     'md': 768px, 
     'sm': 576px, 
@@ -47,26 +49,40 @@ $breakPoints: (
 );
 
 /* Colors */
-$lightGrey: #fcfcfc;
-$mediumGrey: #f3f3f3;
+$light-grey: #fcfcfc;
+$medium-grey: #f3f3f3;
 $black: #0f0f0f;
 $grey: #6C757D;
 
+/* faded colors */
+$faded-yellow: #ffc10773;
+
+/* Shaddows */
+$input-invalid-box-shadow: 0 0 0 bootstrap.$input-btn-focus-width rgba( bootstrap.$warning, .25 );
+$input-valid-box-shadow: 0 0 0 bootstrap.$input-btn-focus-width rgba( bootstrap.$success, .25 );
+
 /* validate input fields */
 .invalid {
-    border-bottom: 4px solid red;
-}
-
-.valid {
-    border-bottom: 4px solid green;
-}
-
-.empty {
+    border: 1px solid bootstrap.$warning !important;
+    &:focus {
+        box-shadow: $input-invalid-box-shadow  !important;
+    }
     
 }
 
+.valid {
+    border: 1px solid bootstrap.$success !important;
+    &:focus {
+        box-shadow: $input-valid-box-shadow  !important;
+    }
+}
+
+.empty {
+    border-bottom: inherit;
+}
+
 /* Borders */
-$borderRadius: ( 
+$border-radius: ( 
     "sm": 3.75px, 
     "md": 7.5px, 
     "lg": 15px 
@@ -74,13 +90,13 @@ $borderRadius: (
 
 
 /* Backgrounds */
-@mixin blueBackground {
+@mixin blue-background {
     background: #1385d5;
     background: linear-gradient(83deg, #0f75bc 0%, #1385d5 100%);
 }
 
 body {
-    background-color: $lightGrey !important;
+    background-color: $light-grey !important;
 }
 
 /* Assign fonts */
@@ -115,26 +131,31 @@ body {
     flex-direction: column;
 }
 
+@mixin box-padding {
+    padding: 1.3rem 1rem;
+}
+
 
 .sign-up-form-parent {
     background: white;
-    box-shadow: 2px 2px 2px $mediumGrey;
+    box-shadow: 2px 2px 2px $medium-grey;
     margin: 1rem 0;
     padding: 1rem 0;
-    border-radius: map-get( $map: $borderRadius, $key: 'lg' );
+    border-radius: map-get( $map: $border-radius, $key: 'lg' );
     border: 1px solid $black !important;
+    @include box-padding;
 
     input {      
-        border-radius: map-get( $map: $borderRadius, $key: 'md' );
-        border: 1px solid #1385d5 !important;
+        border-radius: map-get( $map: $border-radius, $key: 'md' );
+        border: 1px solid #1385d5;
     }
 
     button {
         display: flex;
         margin: auto;
-        border-radius: map-get( $map: $borderRadius, $key: 'md' );
+        border-radius: map-get( $map: $border-radius, $key: 'md' );
         padding: .4rem 2rem;
-        @include blueBackground;
+        @include blue-background;
     }
 
 }
