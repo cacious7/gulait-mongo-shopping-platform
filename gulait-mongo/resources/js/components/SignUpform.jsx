@@ -112,7 +112,7 @@ const SignUpForm = () => {
                             text={ { className: 'text-muted', content: `Create a password that's easy to remember but tough for others to guess.` } }
                         />
                         <FormInputGroup id='confirm-password' 
-                            control={ { className: { validatePassword } ,type: 'password', placeholder: 'Confirm password', required: true, onChange: confirmPassword } }
+                            control={ { className: validatePassword ,type: 'password', placeholder: 'Confirm password', required: true, onChange: confirmPassword } }
                             text={ { className: 'text-muted', content: comfirmPasswordText() } }
                         />
                         <FormInputGroup id='signup-seller' check={ { type: 'checkbox', label: 'Be a Seller', onClick: handleSignUpSeller } } />

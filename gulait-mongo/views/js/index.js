@@ -59761,9 +59761,7 @@ var SignUpForm = function SignUpForm() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: "confirm-password",
     control: {
-      className: {
-        validatePassword: validatePassword
-      },
+      className: validatePassword,
       type: 'password',
       placeholder: 'Confirm password',
       required: true,
