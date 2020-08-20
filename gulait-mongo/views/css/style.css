@@ -11017,14 +11017,32 @@ body {
   padding: 1.3rem 1rem;
 }
 
+.sign-up-form-parent .form-text.input-info {
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transition: all 0.25s ease-in;
+}
+
 .sign-up-form-parent input {
   border-radius: 7.5px;
   border: 1px solid #1385d5;
 }
 
+.sign-up-form-parent input:focus + .form-text {
+  height: auto;
+  overflow: auto;
+  margin: auto;
+  padding: auto;
+  opacity: 1;
+  margin-top: 0.25rem;
+}
+
 .sign-up-form-parent button {
   display: flex;
-  margin: auto;
+  margin: 2rem auto;
   border-radius: 7.5px;
   padding: 0.4rem 2rem;
   background: #1385d5;

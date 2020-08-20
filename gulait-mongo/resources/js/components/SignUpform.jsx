@@ -56,13 +56,13 @@ const SignUpForm = () => {
             <>
                 <Form.Group controlId='store-email'>
                     <Form.Control type='email' placeholder='Store email'/>
-                    <Form.Text className='text-muted'>
+                    <Form.Text className='text-muted input-info'>
                         Is it the same as your personal email? You can leave it blank.
                     </Form.Text>
                 </Form.Group>
                 <Form.Group controlId='store-name'>
                     <Form.Control type='text' placeholder='Store name'  onChange={ updateStoreUrl } required />
-                    <Form.Text className='text-muted'>
+                    <Form.Text className='text-muted input-info '>
                         This cannot be changed.<br></br>
                         store url: <strong className='tiny-text' >{ storeUrl }</strong>
                     </Form.Text>
@@ -101,26 +101,24 @@ const SignUpForm = () => {
                     <Form id='signup-form'>
                         <h6 className='gi-heading' style={ { textAlign: 'center' } }>Sign Up</h6>
                         <FormInputGroup id='user-name' control={ { type: 'text', placeholder: 'User name', required: true } } />
-                        <FormInputGroup id='first-name' control={ { type: 'text', placeholder: 'First name', required: true } } />
-                        <FormInputGroup id='last-name' control={ { type: 'text', placeholder: 'Last name', required: true } } />
                         <FormInputGroup id='personal-email' 
                             control={ { type: 'email', placeholder: 'Personal email', required: true } }
-                            text={ { className: 'text-muted', content: 'Enter a valid email. You can enter your store email if no personal one is available. But you need to have access to it. This is only advised if you sign up as a seller.' } }
+                            text={ { className: 'text-muted input-info', content: 'Enter a valid email. You can enter your store email if no personal one is available. But you need to have access to it. This is only advised if you sign up as a seller.' } }
                         />
                         <FormInputGroup id='password' 
                             control={ { type: 'password', placeholder: 'Password', required: true } }
-                            text={ { className: 'text-muted', content: `Create a password that's easy to remember but tough for others to guess.` } }
+                            text={ { className: 'text-muted input-info', content: `Create a password that's easy to remember but tough for others to guess.` } }
                         />
                         <FormInputGroup id='confirm-password' 
                             control={ { className: validatePassword ,type: 'password', placeholder: 'Confirm password', required: true, onChange: confirmPassword } }
-                            text={ { className: 'text-muted', content: comfirmPasswordText() } }
+                            text={ { className: 'text-muted input-info', content: comfirmPasswordText() } }
                         />
                         <FormInputGroup id='signup-seller' check={ { type: 'checkbox', label: 'Be a Seller', onClick: handleSignUpSeller } } />
                         { sellerSignUpSupport() }
                         <Button variant='primary' type='submit'>
                             Sign Up
                         </Button>
-                        <Form.Text className='text-muted' style={ { marginTop: '2rem' } }>
+                        <Form.Text className='text-muted'>
                             Already have an account? <Link to='/login' className='tiny-text' ><strong>Login here.</strong></Link>
                         </Form.Text>
                         <div className='auth-page-policies' >

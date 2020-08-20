@@ -59008,7 +59008,7 @@ var SignUpForm = function SignUpForm() {
       type: "email",
       placeholder: "Store email"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
-      className: "text-muted"
+      className: "text-muted input-info"
     }, "Is it the same as your personal email? You can leave it blank.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
       controlId: "store-name"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Control, {
@@ -59017,7 +59017,7 @@ var SignUpForm = function SignUpForm() {
       onChange: updateStoreUrl,
       required: true
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
-      className: "text-muted"
+      className: "text-muted input-info "
     }, "This cannot be changed.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "store url: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
       className: "tiny-text"
     }, storeUrl))));
@@ -59076,20 +59076,6 @@ var SignUpForm = function SignUpForm() {
       required: true
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    id: "first-name",
-    control: {
-      type: 'text',
-      placeholder: 'First name',
-      required: true
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    id: "last-name",
-    control: {
-      type: 'text',
-      placeholder: 'Last name',
-      required: true
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: "personal-email",
     control: {
       type: 'email',
@@ -59097,7 +59083,7 @@ var SignUpForm = function SignUpForm() {
       required: true
     },
     text: {
-      className: 'text-muted',
+      className: 'text-muted input-info',
       content: 'Enter a valid email. You can enter your store email if no personal one is available. But you need to have access to it. This is only advised if you sign up as a seller.'
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -59108,7 +59094,7 @@ var SignUpForm = function SignUpForm() {
       required: true
     },
     text: {
-      className: 'text-muted',
+      className: 'text-muted input-info',
       content: "Create a password that's easy to remember but tough for others to guess."
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -59121,7 +59107,7 @@ var SignUpForm = function SignUpForm() {
       onChange: confirmPassword
     },
     text: {
-      className: 'text-muted',
+      className: 'text-muted input-info',
       content: comfirmPasswordText()
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_FormInputGroup__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -59135,10 +59121,7 @@ var SignUpForm = function SignUpForm() {
     variant: "primary",
     type: "submit"
   }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Form"].Text, {
-    className: "text-muted",
-    style: {
-      marginTop: '2rem'
-    }
+    className: "text-muted"
   }, "Already have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/login",
     className: "tiny-text"
