@@ -9,7 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import isObject from '../../../util/isObject'; 
 import FormInputGroup from '../components/FormInputGroup';
-import $ from 'jquery';
+import axios from 'axios';
 
 const SignUpForm = () => {
     //represents whether the user is signing up
@@ -19,6 +19,83 @@ const SignUpForm = () => {
     const [ storeUrl, setStoreUrl ] = useState( 'gulait.com/store/' );
     //a class that shows whether a password is valid or not
     const [ validatePassword, setValidatePassword ] = useState( 'empty' );
+
+    /**
+     * Checks to see if a string has been set and is not empty
+     * @param { String } value String to be checked for emptiness
+     */
+    const isStringSet = ( value ) => {
+        return value && value.length > 1;
+    }
+
+    /**
+     * Returns the current hostname
+     */
+    const getHostUrl = () => {
+        const protocol = window.location.protocol;
+        const slashes = window.location.protocol.concat( '//' );
+        const port = window.location.port.length > 1 ? `:${ window.location.port }` : '';
+        const host = slashes.concat( window.location.hostname ).concat( port );
+        return host ;
+    }
+
+    /**
+     * Handles the submitting of the sign up form
+     * @param { Object } event the event that was activated
+     */
+    const handleSubmit = ( event ) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const userName = isStringSet( form['user-name'].value ) ? form['user-name'].value : null;
+        const personalEmail = isStringSet( form[ 'personal-email' ].value ) ? form[ 'personal-email' ].value : null;
+        const password = isStringSet( form[ 'confirm-password' ].value ) ? form[ 'confirm-password' ].value : null;
+        let url = null;
+
+        let formData = {};
+
+        switch( asSeller ){
+            case true:
+                const storeEmail = isStringSet( form[ 'store-email' ].value ) ? form[ 'store-email' ].value : null;
+                const storeName = isStringSet( form[ 'store-name' ].value ) ? form[ 'store-name' ].value : null;
+                
+                if( userName ) formData.userName = userName;
+                if( personalEmail ) formData.userEmail = personalEmail;
+                if( storeEmail ) formData.storeEmail = storeEmail;
+                if( storeName ) formData.storeName = storeName;
+                if( password ) formData.password = password;
+
+                url = `${ getHostUrl() }/register/seller`;
+            break;
+            case false: 
+                if( userName ) formData.userName = userName;
+                if( personalEmail ) formData.email = personalEmail;
+                if( password ) formData.password = password;
+
+                url = `${ getHostUrl() }/register/buyer`;
+            break;
+        }
+
+        console.log( url, formData );
+
+        axios( {
+            method: 'post',
+            url: url,
+            data: formData,
+            headers: { 'Content-Type': 'application/json' }
+        } )
+        .then( ( res ) => {
+            //if res message is Error, handle as an error
+            if( res.data.message == 'Error' ) {
+                console.log( 'Error Response =', res );
+            }else{
+                console.log( 'Success Response =', res );
+            }
+            
+        } )
+        .catch( ( res ) => {
+            console.log( 'Error Response =', res );
+        } );
+    }
 
     /**
      * Adds or removes seller signup support
@@ -98,7 +175,7 @@ const SignUpForm = () => {
             <Row className='center-children' >
                 <img alt='logo' src='./images/png/logo.png' className='signup-page-logo'></img>
                 <Col xs={11} sm={8} md={4} lg={4} xl={4}  className='sign-up-form-parent' >
-                    <Form id='signup-form'>
+                    <Form id='signup-form' onSubmit={ handleSubmit }>
                         <h6 className='gi-heading' style={ { textAlign: 'center' } }>Sign Up</h6>
                         <FormInputGroup id='user-name' control={ { type: 'text', placeholder: 'User name', required: true } } />
                         <FormInputGroup id='personal-email' 

@@ -35,7 +35,8 @@ const FormInputGroup = ( props ) => {
 
             return (
                 <Form.Check 
-                    type={ props.check.type } 
+                    type={ props.check.type }
+                    className={ props.check.className ? props.check.className : 'empty' } 
                     label= { props.check.label }
                     onClick={ props.check.onClick ? props.check.onClick : () => {} }
                     onChange={ props.check.onChange ? props.check.onChange : () => {} }
@@ -79,7 +80,7 @@ const FormInputGroup = ( props ) => {
         //create Form.Text element
         if( props.hasOwnProperty( 'text' ) ){
             return (
-                <Form.Text className={ props.text.className ? props.text.className : '' } >
+                <Form.Text className={ props.text.className ? props.text.className : 'empty' } >
                     { props.text.content }
                 </Form.Text>
             );

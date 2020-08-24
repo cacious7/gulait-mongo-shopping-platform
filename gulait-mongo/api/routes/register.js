@@ -15,8 +15,6 @@ router.post( '/buyer', async ( req, res ) => {
     //Validate the user input
     const validationSchema = joi.object().keys( { 
         userName: joi.string().min( 3 ).max( 20 ).required(),
-        firstName: joi.string().max( 30 ).required(),
-        lastName: joi.string().max( 30 ).required(),
         email: joi.string().email().required(),
         password: joi.string().min( 6 ).max( 15 ).required()
      } );
@@ -36,8 +34,6 @@ router.post( '/buyer', async ( req, res ) => {
 
             const user = new User( {
                 userName: req.body.userName,
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
                 email: req.body.email,
                 password: hashedPassword,
                 roles: [ { name: "buyer" } ]
@@ -49,6 +45,7 @@ router.post( '/buyer', async ( req, res ) => {
                 data: { user: savedUser.userName } 
             });
         } catch (err) {
+            console.log( err );
             res.json( { message: 'Error', data: err.toString() } );
         }
     }
@@ -70,8 +67,8 @@ router.post( '/seller', async ( req, res ) => {
     
     const validationSchema = joi.object().keys( {
         userName: joi.string().trim().min( 3 ).max( 20 ).required(),
-        firstName: joi.string().trim().max( 30 ).required(),
-        lastName: joi.string().trim().max( 30 ).required(),
+        // firstName: joi.string().trim().max( 30 ).required(),
+        // lastName: joi.string().trim().max( 30 ).required(),
         userEmail: joi.string().trim().email(),
         storeEmail: joi.string().trim().email(),
         storeName: joi.string().trim().min( 2 ).max( 40 ),
@@ -124,8 +121,8 @@ router.post( '/seller', async ( req, res ) => {
                 savedStore = storeDoc;
                 const user = new User( {
                     userName: req.body.userName,
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
+                    // firstName: req.body.firstName,
+                    // lastName: req.body.lastName,
                     email: email != null ? email : req.body.userEmail,
                     password: hashedPassword,
                     roles: [ { name: "seller" }, { name: "buyer" } ],

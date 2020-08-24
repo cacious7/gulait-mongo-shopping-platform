@@ -11007,6 +11007,8 @@ body {
   flex-direction: column;
 }
 
+/* sign up form */
+
 .sign-up-form-parent {
   background: white;
   box-shadow: 2px 2px 2px #f3f3f3;
