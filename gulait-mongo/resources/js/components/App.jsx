@@ -7,7 +7,7 @@ import NavigationBar from './NavigationBar';
 const App = () => {
     return ( 
         <Router >
-            <NavigationBar></NavigationBar>
+            {/* <NavigationBar></NavigationBar> */}
             <Switch>
                 <Route path='/signup' component={ SignUp } ></Route>
                 <Route path='/home' component={ Home } ></Route>

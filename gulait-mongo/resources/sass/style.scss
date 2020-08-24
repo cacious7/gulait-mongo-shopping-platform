@@ -53,6 +53,7 @@ $light-grey: #fcfcfc;
 $medium-grey: #f3f3f3;
 $black: #0f0f0f;
 $grey: #6C757D;
+$orange: #f89406;
 
 /* faded colors */
 $faded-yellow: #ffc10773;
@@ -60,6 +61,11 @@ $faded-yellow: #ffc10773;
 /* Shaddows */
 $input-invalid-box-shadow: 0 0 0 bootstrap.$input-btn-focus-width rgba( bootstrap.$warning, .25 );
 $input-valid-box-shadow: 0 0 0 bootstrap.$input-btn-focus-width rgba( bootstrap.$success, .25 );
+
+/* Transitions */
+@mixin transition-100 {
+    transition: all .2s ease-in; 
+} 
 
 /* validate input fields */
 .invalid {
@@ -85,7 +91,8 @@ $input-valid-box-shadow: 0 0 0 bootstrap.$input-btn-focus-width rgba( bootstrap.
 $border-radius: ( 
     "sm": 3.75px, 
     "md": 7.5px, 
-    "lg": 15px 
+    "lg": 15px,
+    "xl": 30px
 );
 
 
@@ -141,7 +148,7 @@ body {
     margin: 0;
     padding: 0;
     opacity: 0;
-    transition: all .25s ease-in;
+    @include transition-100;
 }
 
 @mixin display-all-opacity {
@@ -188,4 +195,45 @@ body {
 
 .signup-page-logo {
     max-width: 5rem;
+}
+
+/* Home Page */
+.home-title {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* search-field */
+.search-field {
+    button {
+        border-top-left-radius: map-get($map: $border-radius, $key: 'xl' ) !important;
+        border-bottom-left-radius: map-get($map: $border-radius, $key: 'xl' ) !important;
+        border: 1px solid $orange !important;
+        background: rgba( $orange, .8 ) !important ;
+        color: white !important;
+
+        &:hover {
+            background: rgba( $orange, .5 ) !important ;
+        }
+    }
+    //button on focus and drpdown on show
+    .show > .btn-outline-secondary.dropdown-toggle:focus, button:focus {
+        box-shadow: 0 0 0 0.2rem rgba($orange, .5) !important ;
+        border: rgba( $orange, .8 ) !important;
+        background: white !important;
+        color: orange !important;
+    }
+
+    input {
+        border-top-right-radius: map-get($map: $border-radius, $key: 'xl' );
+        border-bottom-right-radius: map-get($map: $border-radius, $key: 'xl' );
+        border: 1px solid rgba( $orange, .8 );
+        @include transition-100;
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba($orange, .5) !important;
+            border: rgba( $orange, .8 ) !important;
+        }
+    }
+
 }

@@ -10947,6 +10947,8 @@ xs = <576px
 
 /* Shaddows */
 
+/* Transitions */
+
 /* validate input fields */
 
 .invalid {
@@ -11025,7 +11027,7 @@ body {
   margin: 0;
   padding: 0;
   opacity: 0;
-  transition: all 0.25s ease-in;
+  transition: all 0.2s ease-in;
 }
 
 .sign-up-form-parent input {
@@ -11053,5 +11055,46 @@ body {
 
 .signup-page-logo {
   max-width: 5rem;
+}
+
+/* Home Page */
+
+.home-title {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* search-field */
+
+.search-field button {
+  border-top-left-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+  border: 1px solid #f89406 !important;
+  background: rgba(248, 148, 6, 0.8) !important;
+  color: white !important;
+}
+
+.search-field button:hover {
+  background: rgba(248, 148, 6, 0.5) !important;
+}
+
+.search-field .show > .btn-outline-secondary.dropdown-toggle:focus,
+.search-field button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 148, 6, 0.5) !important;
+  border: rgba(248, 148, 6, 0.8) !important;
+  background: white !important;
+  color: orange !important;
+}
+
+.search-field input {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: 1px solid rgba(248, 148, 6, 0.8);
+  transition: all 0.2s ease-in;
+}
+
+.search-field input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(248, 148, 6, 0.5) !important;
+  border: rgba(248, 148, 6, 0.8) !important;
 }
 
