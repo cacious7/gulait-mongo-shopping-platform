@@ -4,23 +4,19 @@ import {
     FormControl,
     InputGroup,
     Dropdown,
-    DropdownButton
+    DropdownButton,
+    Button
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const SearchField = () => {
-
-    const handleSubmit = ( event ) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        console.log( 'Search form= ', form );
-    }
+const SearchField = ( props ) => {
 
     return (
-        <Form onSubmit={ handleSubmit } >
-            <InputGroup className=" search-field mb-3">
+        <Form>
+            <InputGroup className={ `search-field mb-3 ${ props.className }`}>
                 <DropdownButton
                 as={InputGroup.Prepend}
-                variant="outline-secondary"
+                className='search-categories'
                 title="Categories"
                 id="input-group-dropdown-1"
                 >
@@ -30,7 +26,27 @@ const SearchField = () => {
                 <Dropdown.Divider />
                 <Dropdown.Item href="#">Separated link</Dropdown.Item>
                 </DropdownButton>
-                <FormControl aria-describedby="basic-addon1" placeholder='Search for a product' />
+                <FormControl 
+                    value={ props.searchString } 
+                    id='search-input-box'
+                    onFocus={ props.handleProductSearch } 
+                    onChange={ props.handleProductSearch }  
+                    aria-describedby="Search for a product" 
+                    placeholder='Search for a product' 
+                />
+                <InputGroup.Append>
+                    <Button className='exit-search-mode' onClick={ props.toggleSearchMode }>
+                        {
+                            props.searchMode ? 
+                                props.isFetching ?
+                                <FontAwesomeIcon icon={ [ 'fas', 'times-circle' ] } spin />
+                                :
+                                <FontAwesomeIcon icon={ [ 'fas', 'times-circle' ] } />
+                            :
+                                <FontAwesomeIcon icon={ [ 'fas', 'search' ] } />
+                        }
+                    </Button>
+                </InputGroup.Append>
             </InputGroup>
         </Form>
     );

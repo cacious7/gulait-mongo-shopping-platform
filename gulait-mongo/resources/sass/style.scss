@@ -197,17 +197,29 @@ body {
     max-width: 5rem;
 }
 
+.search-mode {
+    margin: 2rem 0;
+}
+
 /* Home Page */
 .home-title {
     margin-top: 2rem;
     text-align: center;
 }
 
+/* On focus */
+@mixin focus( $color ){
+
+    box-shadow: 0 0 0 0.2rem rgba($color, .5) !important;
+    border: rgba( $color, .8 ) !important;
+}
+
+
 /* search-field */
 .search-field {
-    button {
-        border-top-left-radius: map-get($map: $border-radius, $key: 'xl' ) !important;
-        border-bottom-left-radius: map-get($map: $border-radius, $key: 'xl' ) !important;
+    .search-categories button {
+        border-top-left-radius: map-get( $map: $border-radius, $key: 'xl' ) !important;
+        border-bottom-left-radius: map-get( $map: $border-radius, $key: 'xl' ) !important;
         border: 1px solid $orange !important;
         background: rgba( $orange, .8 ) !important ;
         color: white !important;
@@ -215,24 +227,50 @@ body {
         &:hover {
             background: rgba( $orange, .5 ) !important ;
         }
+        &:focus {
+            @include focus( $orange );
+        }
     }
     //button on focus and drpdown on show
-    .show > .btn-outline-secondary.dropdown-toggle:focus, button:focus {
-        box-shadow: 0 0 0 0.2rem rgba($orange, .5) !important ;
-        border: rgba( $orange, .8 ) !important;
+    .search-categories.show > button:focus {
+        @include focus( $orange );
         background: white !important;
         color: orange !important;
     }
 
     input {
-        border-top-right-radius: map-get($map: $border-radius, $key: 'xl' );
-        border-bottom-right-radius: map-get($map: $border-radius, $key: 'xl' );
         border: 1px solid rgba( $orange, .8 );
         @include transition-100;
 
         &:focus {
-            box-shadow: 0 0 0 0.2rem rgba($orange, .5) !important;
-            border: rgba( $orange, .8 ) !important;
+            @include focus( $orange );
+        }
+    }
+
+    .exit-search-mode {
+        border-top-right-radius: map-get($map: $border-radius, $key: 'xl' );
+        border-bottom-right-radius: map-get($map: $border-radius, $key: 'xl' );
+        border: 1px solid rgba( $orange, .8 );
+        border-left: none;
+        background: white;
+        color: rgba( $orange, .5 );
+        @include transition-100;
+
+        &:hover {
+            color: rgba( $orange, .8 );
+        }
+
+        &:focus {
+            background: white;
+            color: rgba( $orange, .8 );
+            @include focus( $orange );
+        }
+
+        &:active {
+            background: white !important;
+            border: 1px solid rgba( $orange, .8 ) !important;
+            border-left: none !important;
+            color: rgba( $orange, .8 ) !important;
         }
     }
 

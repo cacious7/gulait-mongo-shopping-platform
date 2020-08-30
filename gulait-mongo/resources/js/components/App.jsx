@@ -3,6 +3,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
+import '../font-awesome';
 
 const App = () => {
     return ( 

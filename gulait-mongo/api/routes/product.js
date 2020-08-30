@@ -121,13 +121,13 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
  * @param { String } name the name of the product to be searched
  * @return { JSON } the list of product found ranging from one to many
  */
-router.get( '/search', async ( req, res ) => {
+router.post( '/search', async ( req, res ) => {
     //If both id and name are provided, an error should be return
     if( req.body.id && req.body.name ) return res.status( 401 ).json( {
         message: 'Error',
         data: 'You can only search a product by one value (criteria). Either by [id] or [name], not both.'
     } );
-
+    console.log( 'body', req.body );
     //validate user input
     const validationSchema = joi.object().keys( {
         id: joi.string().min( 5 ).max( 30 ),

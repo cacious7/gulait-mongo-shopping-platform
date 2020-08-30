@@ -62,12 +62,12 @@ Content-Type: application/json
     "tags": [ "bape swag" ]
 }
 
-### CREATE PRODUCT - for public users, no authentication
-GET http://localhost:3000/product/search
+### Search for a PRODUCT - for public users, no authentication
+POST http://localhost:9000/product/search
 Content-Type: application/json
 
 {
-    "name": ""
+    "name": "n"
 }
 
 ### DELETE Product - Needs authorization

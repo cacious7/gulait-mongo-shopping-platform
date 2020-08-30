@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import isObject from '../../../util/isObject'; 
 import FormInputGroup from '../components/FormInputGroup';
 import axios from 'axios';
+import getHostUrl from '../../../util/getHostUrl';
 
 const SignUpForm = () => {
     //represents whether the user is signing up
@@ -26,17 +27,6 @@ const SignUpForm = () => {
      */
     const isStringSet = ( value ) => {
         return value && value.length > 1;
-    }
-
-    /**
-     * Returns the current hostname
-     */
-    const getHostUrl = () => {
-        const protocol = window.location.protocol;
-        const slashes = window.location.protocol.concat( '//' );
-        const port = window.location.port.length > 1 ? `:${ window.location.port }` : '';
-        const host = slashes.concat( window.location.hostname ).concat( port );
-        return host ;
     }
 
     /**
