@@ -71,6 +71,8 @@ app.use( '/tag', tagRouter );
 
 //File handling - to serve static files such as css, img or js files
 app.use( express.static( 'views' ) );
+//serving more specific types of flies specific to the users of the platform
+app.use( express.static( 'files' ) );
 
 //ERROR HANDLING
 

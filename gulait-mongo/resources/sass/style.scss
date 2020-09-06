@@ -211,7 +211,10 @@ body {
 @mixin focus( $color ){
 
     box-shadow: 0 0 0 0.2rem rgba($color, .5) !important;
-    border: rgba( $color, .8 ) !important;
+}
+
+@mixin focus-no-shadow( $color ){
+    box-shadow: none !important;
 }
 
 
@@ -228,7 +231,7 @@ body {
             background: rgba( $orange, .5 ) !important ;
         }
         &:focus {
-            @include focus( $orange );
+            @include focus-no-shadow( $orange );
         }
     }
     //button on focus and drpdown on show
@@ -239,11 +242,14 @@ body {
     }
 
     input {
-        border: 1px solid rgba( $orange, .8 );
+        border: 1px solid rgba( $orange, .8 ) !important;
+        border-right: 0 !important;
+        border-top-left-radius: map-get($map: $border-radius, $key: 'xl' );
+        border-bottom-left-radius: map-get($map: $border-radius, $key: 'xl' );
         @include transition-100;
 
-        &:focus {
-            @include focus( $orange );
+        &:focus, &:active {
+            @include focus-no-shadow( $orange );
         }
     }
 
@@ -263,7 +269,7 @@ body {
         &:focus {
             background: white;
             color: rgba( $orange, .8 );
-            @include focus( $orange );
+            @include focus-no-shadow( $orange );
         }
 
         &:active {
@@ -274,4 +280,41 @@ body {
         }
     }
 
+}
+
+/* Product */
+.product {
+    .overlay{
+        padding: 0 !important;
+        margin: 0 !important;
+        display: none;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        color: white;
+    }
+
+    &:hover {
+        .overlay {
+            display: flex;
+            position: relative;
+            z-index: 100;
+            background: rgba( 0,0,0,.25 );
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+    }
+
+    &:hover, &:focus, &:active {
+        cursor: pointer;
+        //border-color: rgba( $orange, .25 );
+    }
+
+    &:hover {
+        box-shadow: 0rem .2rem .1rem 0rem bootstrap.$gray-200 !important; 
+    }
 }

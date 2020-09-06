@@ -8,7 +8,7 @@ const Store = require( '../models/Store' );
  * update a store
  * need authorization
  */
-router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, async () => {
+router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, async ( req, res ) => {
     try {
         const validationSchema = joi.object().keys( {
             email: joi.string().email(),
@@ -54,6 +54,46 @@ router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, asyn
         return res.status( 500 ).json( { message: 'Error', data: err.toString() } );
     }
 } );
+
+/**
+ * Return a list of stores that matches an id or a name
+ * @param { String } req.body.id the id of the store 
+ * @param { String } req.body.name the name of store to be found
+ * @return { JSON } returns the list stores found and an message
+ */
+router.post( '/search', async ( req, res ) => {
+    try{
+        //if both id and name are not provided, then return an error message
+        if( !req.body.id && !req.body.name ) return res.status( 400 ).json( { 
+            message: 'Error', 
+            data: 'Please provide either a store name or id' 
+        } );
+        //if both id and name are provided, return an error saying only  one can be provided
+        if( req.body.id && req.body.name ) return res.status( 400 ).json( { 
+            message: 'Error', 
+            data: 'You cannot provide both id and name. Only one is required' 
+        } ); 
+        const validationSchema = joi.object().keys( {
+            id: joi.string(),
+            name: joi.string()
+        } );
+        joi.validate( req.body, validationSchema, ( err, results ) => {
+            if( err ) res.status( 400 ).json( { message: 'Error', data: err } );
+        } );
+
+        let store = null;
+        if( req.body.id ){
+            store = await Store.findById( req.body.id );
+        }else if( req.body.name ){
+            store = await Store.find( req.body.name );
+        }
+        
+        console.log( 'store', store );
+        return res.status( 200 ).json( { message: 'Success', data: store } );
+    }catch( err ){
+        if( err ) return res.json( { message: 'Error', data: err.toString() } );
+    }
+}  );
 
 /**
  * Delete a store

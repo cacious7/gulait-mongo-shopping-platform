@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SearchField from '../../components/Searchfield';
-import { Container } from 'react-bootstrap';
+import { Container, CardColumns } from 'react-bootstrap';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 import getHostUrl from '../../../../util/getHostUrl';
@@ -13,8 +13,10 @@ const Home = () => {
         status, 
         data, 
         isFetching, 
-        productSearchError
+        error
     } = useQuery( searchString, () => getProducts() );
+    
+
 
     /**
      * Searches for products whose name matches a search text
@@ -38,16 +40,26 @@ const Home = () => {
      * @return { Array } A list of product elements
      */
     const displaySearchedProducts = ( products ) => {
-        console.log( 'products= ', products );
-        if( products.length == 0 ) return <h1>Results for that search were Not Found! Please try changing your search.</h1> ;
-
-        const productElements = products.map( ( product, index ) => {
-            return (
-                <Product product={ product } key={ index } />
+        if( products.message.toLowerCase() == 'error' ) {
+            return ( 
+                <>
+                    <br/>
+                    <h5>An error occured while fetching the products.</h5>
+                    <p>Error: { products.data }</p>
+                </>
             );
-        } );
+        }else {
+            console.log( 'products= ', products );
+            if( products.data.length == 0 ) return <h1>Results for that search were Not Found! Please try changing your search.</h1> ;
 
-        return productElements;
+            const productElements = products.data.map( ( product, index ) => {
+                return (
+                    <Product product={ product } key={ index } />
+                );
+            } );
+
+            return <CardColumns> { productElements } </CardColumns>;
+        }
     }
 
     /**
@@ -72,7 +84,6 @@ const Home = () => {
         //then give the seach input box focus
         if( searchMode ){
             const searchField = document.getElementById( 'search-input-box' );
-            console.log('search field = ', searchField);
             searchField.focus();
         }
     });
@@ -100,20 +111,15 @@ const Home = () => {
                             handleProductSearch={ handleProductSearch }
                             toggleSearchMode={ toggleSearchMode }
                         />
-                        { status == 'success' ? displaySearchedProducts( data.data.data ) : <h5>Loading...</h5> }
+                        { status == 'success' ? displaySearchedProducts( data.data ) : <h5>Loading...</h5> }
                     </>
                 :
                     <>
                         <h5 className='home-title gi-heading' > Find Products Near You </h5>
                         <SearchField handleProductSearch={ handleProductSearch } searchMode={ searchMode } toggleSearchMode={ toggleSearchMode }  />
+                        { status == 'success' ? displaySearchedProducts( data.data ) : <h5>Loading...</h5> }
                     </>
             }
-
-            {
-                isFetching ? console.log( 'isFetching= ' + status) : console.log( 'data= ', data )
-            }
-            
-            
         </Container> 
     );
 }
