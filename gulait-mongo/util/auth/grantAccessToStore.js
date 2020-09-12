@@ -7,6 +7,7 @@
 function grantAccessToStore( employingStores, storeId ){
     //verify that the seller has access to a specific store
     const result = employingStores.filter( store => { 
+        console.log( `employingStore - ${ store.storeId } === storeId - ${ storeId } ` );
         return store.storeId == storeId;
     }  );
 

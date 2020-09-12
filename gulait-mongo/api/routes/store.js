@@ -12,7 +12,7 @@ router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, asyn
     try {
         const validationSchema = joi.object().keys( {
             email: joi.string().email(),
-            id: joi.string().required(),
+            storeId: joi.string().required(),
             addresses: joi.array(),
             visibility: joi.object(),
             categories: joi.array(),
@@ -31,7 +31,7 @@ router.patch( '/update', authenticateAccessToken, grantSellerAccessToStore, asyn
         //if no error was sent back
         if( !res.headersSent ){
             //fetch
-            const store = await Store.findById( req.body.id );
+            const store = await Store.findById( req.body.storeId );
             //edit
             if( req.body.email ) store.email = req.body.email;
             if( req.body.addresses ) store.addresses = req.body.addresses;

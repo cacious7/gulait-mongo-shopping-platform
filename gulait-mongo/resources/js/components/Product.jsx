@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import getHostUrl from '../../../util/getHostUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EmbededGoogleMap from './EmbededGoogleMap';
 
 const Product = ( props ) => {
     const [ show, setShow ] = useState( false );
@@ -49,14 +50,16 @@ const Product = ( props ) => {
         const store = data.data.data;
         return ( 
             <>
-                Store name: { store.name }
-                email: { store.email }
+                <p><strong>Store name:</strong> { store.name }</p>
+                <p><strong>Email:</strong> { store.email }</p>
+                <p><strong>Phone:</strong> +{ store.phone.countryCode } { store.phone.number }</p>
+                <EmbededGoogleMap className='modal-google-map' />
             </>
          );
     }
 
     return (
-        <>
+        <> 
             <Card className='product' onClick={ handleOpen } >
                 { props.product.imgUrl ? <Card.Img variant='top' src={ props.product.imgUrl } /> : '' }
                 <Card.Body className='center-children' >
@@ -64,7 +67,7 @@ const Product = ( props ) => {
                 </Card.Body>
                 <div className='overlay center-children' > <FontAwesomeIcon icon={ [ 'fas', 'plus' ] } size='lg' /> </div>
             </Card>
-            <Modal show={ show } onHide={ handleClose }>
+            <Modal className='product-seller-details ' show={ show } onHide={ handleClose }>
                 <Modal.Header closeButton>
                 <Modal.Title className='gi-heading' > Seller Contact Details </Modal.Title>
                 </Modal.Header>

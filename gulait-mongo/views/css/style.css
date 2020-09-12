@@ -11134,6 +11134,23 @@ body {
   color: rgba(248, 148, 6, 0.8) !important;
 }
 
+/* Customize the size of the product modal that is displayed 
+ * when the product is viewd in catalog or search mode
+ * this is to allow clear display of the map in the modal
+*/
+
+.product-seller-details .modal-dialog {
+  max-width: 70vw;
+}
+
+.product-seller-details .modal-header .gi-heading {
+  margin: 0 !important;
+}
+
+.product-seller-details .modal-google-map {
+  height: 80vh;
+}
+
 /* Product */
 
 .product .overlay {

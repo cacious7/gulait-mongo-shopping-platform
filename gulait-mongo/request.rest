@@ -1,6 +1,6 @@
 ###
 POST http://localhost:3000/token
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjQ0ODE2LCJleHAiOjE1OTY3MzEyMTZ9.hDU-S6vv2Dfjc_h5KPCHc6Y9z5OwCT1nsLRkcN3kkfQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk5Mzk3MzI3LCJleHAiOjE1OTk0ODM3Mjd9.UTUOYaZEo0y6a3f0Ocnre7D7EzdrrFbUzFkH0IpRQIk
 
 ###
 DELETE http://localhost:3000/logout
@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c
     }
 
 ### STORE UPDATING
-PATCH http://localhost:3000/store
+PATCH http://localhost:3000/store/update
 Authorization: Bearer 
 
 ###
@@ -23,12 +23,6 @@ Content-Type: application/json
     "userName": "mark",
     "password": "Cacnga@153."
 }
-
-{
-    "message":"SUCCESS",
-    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjU1NDgyLCJleHAiOjE1OTY2NTkwODJ9.54ExrmnoCM8NToC6uTkJeHQbzYtQT8hcPQUWWbTrIpg"
-}
-
 
 ### CREATE PRODUCT - only for authenicated users
 POST http://localhost:3000/product/create
@@ -53,13 +47,13 @@ Content-Type: application/json
 }
 
 ### UPDATE Product - Needs authorization
-PATCH http://localhost:3000/product/update
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk2NjU1NDgyLCJleHAiOjE1OTY2NTkwODJ9.54ExrmnoCM8NToC6uTkJeHQbzYtQT8hcPQUWWbTrIpg
+PATCH http://localhost:9000/product/update
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJ1c2VyTmFtZSI6Im1hcmsiLCJyb2xlcyI6W3sicHJpdmlsZWdlcyI6W10sIl9pZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YyIsIm5hbWUiOiJzZWxsZXIifV0sImVtcGxveWluZ1N0b3JlcyI6W3siX2lkIjoiNWYxODMyNWQ2YjhmYmExMGE4ZmY2ZjVkIiwic3RvcmVJZCI6IjVmMTgzMjVkNmI4ZmJhMTBhOGZmNmY1YSIsInN0b3JlTmFtZSI6Im1hcmt1c1Nob2VzIn1dfSwiaWF0IjoxNTk5Mzk3MzI3LCJleHAiOjE1OTk0MDA5Mjd9.e9Y5h3Fqywo1jMzCUHYaj-w_cIxY6MdrDsDHxMX31vw
 Content-Type: application/json
 
 {
-    "id": "5f2af33c6617e231bc5f8175",
-    "tags": [ "bape swag" ]
+    "id": "5f2af8f60d06b92c80e9f88d",
+    "imgUrl": "stores/markusshoes/images/adidas alphabounce-9.jpg"
 }
 
 ### Search for a PRODUCT - for public users, no authentication
@@ -67,7 +61,7 @@ POST http://localhost:9000/product/search
 Content-Type: application/json
 
 {
-    "name": "n"
+    "name": ""
 }
 
 ### DELETE Product - Needs authorization

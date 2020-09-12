@@ -14,6 +14,7 @@ function grantSellerAccessToStore( req, res, next ){
      //verify that the user is a seller
      if( !validateRole( req.body.roles, 'seller' ) ) return res.status( 401 ).json( { message: 'Error', data: 'The user must be a seller to create a product' } );
     try {
+        console.log( `req.body`, req.body );
         const status = grantAccessToStore( req.body.employingStores, req.body.storeId );
 
         switch( status ){
