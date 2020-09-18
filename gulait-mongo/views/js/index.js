@@ -62886,9 +62886,10 @@ var EmbededGoogleMap = function EmbededGoogleMap(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('AIzaSyBmuIBESvw97GwrpZyqy8AHXhfxWh8z2os'),
       _useState2 = _slicedToArray(_useState, 2),
       apiKey = _useState2[0],
-      setApiKey = _useState2[1];
+      setApiKey = _useState2[1]; // const [ url, setUrl ] = useState( `https://www.google.com/maps/embed/v1/place?key=${ apiKey } &q=Space+Needle,Seattle+WA`  );
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("https://www.google.com/maps/embed/v1/place?key=".concat(apiKey, " &q=Space+Needle,Seattle+WA")),
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("https://www.google.com/maps/embed/v1/place?key=".concat(apiKey, " &q=").concat(props.location.latitude, ",").concat(props.location.longitude)),
       _useState4 = _slicedToArray(_useState3, 2),
       url = _useState4[0],
       setUrl = _useState4[1];
@@ -63198,6 +63199,10 @@ var Product = function Product(props) {
   var displaySellerDetails = function displaySellerDetails() {
     var store = data.data.data;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Store name:"), " ", store.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Email:"), " ", store.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Phone:"), " +", store.phone.countryCode, " ", store.phone.number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_EmbededGoogleMap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      location: {
+        longitude: props.location.longitude,
+        latitude: props.location.latitude
+      },
       className: "modal-google-map"
     }));
   };
@@ -63633,10 +63638,23 @@ var Home = function Home() {
       searchString = _useState2[0],
       setSearchString = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    longitude: null,
+    latitude: null
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      searchMode = _useState4[0],
-      setSearchMode = _useState4[1];
+      location = _useState4[0],
+      setLocation = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      getLocationTries = _useState6[0],
+      setGetLocationTries = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      searchMode = _useState8[0],
+      setSearchMode = _useState8[1];
 
   var _useQuery = Object(react_query__WEBPACK_IMPORTED_MODULE_5__["useQuery"])(searchString, function () {
     return getProducts();
@@ -63645,6 +63663,60 @@ var Home = function Home() {
       data = _useQuery.data,
       isFetching = _useQuery.isFetching,
       error = _useQuery.error;
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    getCoords();
+  }, []);
+  /**
+   * Get the user's coordinates
+   */
+
+  var getCoords = function getCoords() {
+    setGetLocationTries(function (prevValue) {
+      return prevValue++;
+    });
+
+    if (navigator.geolocation && getLocationTries < 3) {
+      navigator.geolocation.getCurrentPosition(setCoords, getCoordsErrorHandling);
+    }
+  };
+  /**
+   * Set the cordingates state
+   */
+
+
+  var setCoords = function setCoords(position) {
+    setLocation({
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    });
+  };
+  /**
+   * handle Errors when we try to get coords
+   */
+
+
+  var getCoordsErrorHandling = function getCoordsErrorHandling(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        alert("We wont be able to show you the store's location if you dont allow us to get your location. Please allow.");
+        getCoords();
+        break;
+
+      case error.POSITION_UNAVAILABLE:
+        alert("Your position is unavailable. This will prevent the map from showing.");
+        break;
+
+      case error.TIMEOUT:
+        alert("The request to get your location Timed out. We will try again.");
+        getCoords();
+        break;
+
+      case error.UNKNOWN_ERROR:
+        alert("Something went wrong when getting your location. Please contact support.");
+        break;
+    }
+  };
   /**
    * Searches for products whose name matches a search text
    * @return { Object } The search results
@@ -63702,6 +63774,10 @@ var Home = function Home() {
       var productElements = products.data.map(function (product, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Product__WEBPACK_IMPORTED_MODULE_7__["default"], {
           product: product,
+          location: {
+            longitude: location.longitude,
+            latitude: location.latitude
+          },
           key: index
         });
       });
@@ -63771,9 +63847,15 @@ var Home = function Home() {
     searchString: searchString,
     handleProductSearch: handleProductSearch,
     toggleSearchMode: toggleSearchMode
-  }), status == 'success' ? displaySearchedProducts(data.data) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "Loading...")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+  }), status == 'success' ? displaySearchedProducts(data.data) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "Loading...")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "header center-children"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: "images/png/Logo-01.png",
+    title: "Gulait logo",
+    alt: "Gulait logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "home-title gi-heading"
-  }, " Find Products Near You "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Searchfield__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, " Find Products Near You ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Searchfield__WEBPACK_IMPORTED_MODULE_2__["default"], {
     handleProductSearch: handleProductSearch,
     searchMode: searchMode,
     toggleSearchMode: toggleSearchMode

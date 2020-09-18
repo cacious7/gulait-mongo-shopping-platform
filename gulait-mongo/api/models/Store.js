@@ -31,7 +31,10 @@ const StoreSchema = new mongoose.Schema( {
             city: String,
             province: String,
             country: String,
-            postcode: String
+            postcode: String,
+            longitude: Number,
+            latitude: Number,
+            active: Boolean
         }
     ],
     visibility: {

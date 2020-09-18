@@ -8,6 +8,8 @@ import Product from '../Product';
 
 const Home = () => {
     const [ searchString, setSearchString ] = useState( '' );
+    const [ location, setLocation ] = useState( { longitude: null, latitude: null } );
+    const [ getLocationTries, setGetLocationTries ] = useState( 0 );
     const [ searchMode, setSearchMode ] = useState( false );
     const { 
         status, 
@@ -15,8 +17,48 @@ const Home = () => {
         isFetching, 
         error
     } = useQuery( searchString, () => getProducts() );
-    
 
+    useEffect( () => { getCoords() },[] );
+
+    /**
+     * Get the user's coordinates
+     */
+    const getCoords = () => {
+
+        setGetLocationTries( prevValue => prevValue++ );
+        if( navigator.geolocation && getLocationTries < 3 ){
+            navigator.geolocation.getCurrentPosition( setCoords, getCoordsErrorHandling );
+        }
+    }
+
+    /**
+     * Set the cordingates state
+     */
+    const setCoords = ( position ) => {
+        setLocation( { longitude: position.coords.longitude, latitude: position.coords.latitude } );
+    }
+
+    /**
+     * handle Errors when we try to get coords
+     */
+    const getCoordsErrorHandling = ( error ) => {
+        switch( error.code ){
+            case error.PERMISSION_DENIED:
+                alert( `We wont be able to show you the store's location if you dont allow us to get your location. Please allow.` );
+                getCoords();
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert( `Your position is unavailable. This will prevent the map from showing.` );
+                break;
+            case error.TIMEOUT:
+                alert( `The request to get your location Timed out. We will try again.` );
+                getCoords();
+                break;
+            case error.UNKNOWN_ERROR:
+                alert( `Something went wrong when getting your location. Please contact support.` );
+                break;
+        }
+    }
 
     /**
      * Searches for products whose name matches a search text
@@ -54,7 +96,11 @@ const Home = () => {
 
             const productElements = products.data.map( ( product, index ) => {
                 return (
-                    <Product product={ product } key={ index } />
+                    <Product 
+                        product={ product } 
+                        location={ { longitude: location.longitude, latitude: location.latitude } } 
+                        key={ index } 
+                    />
                 );
             } );
 
@@ -115,7 +161,11 @@ const Home = () => {
                     </>
                 :
                     <>
-                        <h5 className='home-title gi-heading' > Find Products Near You </h5>
+                        <div className='header center-children'>
+                            <img src='images/png/Logo-01.png' title='Gulait logo' alt='Gulait logo' ></img>
+                            <h5 className='home-title gi-heading' > Find Products Near You </h5>
+                        </div>
+                        
                         <SearchField handleProductSearch={ handleProductSearch } searchMode={ searchMode } toggleSearchMode={ toggleSearchMode }  />
                         { status == 'success' ? displaySearchedProducts( data.data ) : <h5>Loading...</h5> }
                     </>

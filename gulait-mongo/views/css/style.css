@@ -11151,6 +11151,16 @@ body {
   height: 80vh;
 }
 
+/* Header element */
+
+.header {
+  flex-direction: row !important;
+}
+
+.header img {
+  max-width: 15rem;
+}
+
 /* Product */
 
 .product .overlay {

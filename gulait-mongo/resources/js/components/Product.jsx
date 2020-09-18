@@ -53,7 +53,10 @@ const Product = ( props ) => {
                 <p><strong>Store name:</strong> { store.name }</p>
                 <p><strong>Email:</strong> { store.email }</p>
                 <p><strong>Phone:</strong> +{ store.phone.countryCode } { store.phone.number }</p>
-                <EmbededGoogleMap className='modal-google-map' />
+                <EmbededGoogleMap   
+                    location={ { longitude: props.location.longitude, latitude: props.location.latitude } } 
+                    className='modal-google-map' 
+                />
             </>
          );
     }

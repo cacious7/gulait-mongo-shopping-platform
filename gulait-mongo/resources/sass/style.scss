@@ -300,6 +300,15 @@ body {
     }
 }
 
+/* Header element */
+.header {
+    flex-direction: row !important;
+
+    img {
+        max-width: 15rem;
+    }
+}
+
 /* Product */
 .product {
     .overlay{

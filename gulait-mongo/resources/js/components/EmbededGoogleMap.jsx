@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 
 const EmbededGoogleMap = ( props ) => {
     const [ apiKey, setApiKey ] = useState( 'AIzaSyBmuIBESvw97GwrpZyqy8AHXhfxWh8z2os' );
-    const [ url, setUrl ] = useState( `https://www.google.com/maps/embed/v1/place?key=${ apiKey } &q=Space+Needle,Seattle+WA`  );
+    // const [ url, setUrl ] = useState( `https://www.google.com/maps/embed/v1/place?key=${ apiKey } &q=Space+Needle,Seattle+WA`  );
+    const [ url, setUrl ] = useState( 
+        `https://www.google.com/maps/embed/v1/place?key=${ apiKey } &q=${ props.location.latitude },${ props.location.longitude }`
+    );
     return (
         <iframe
             width={ props.width ? props.width : '100%' }

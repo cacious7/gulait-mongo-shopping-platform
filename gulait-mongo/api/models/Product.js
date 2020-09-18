@@ -164,6 +164,10 @@ const ProductSchema = mongoose.Schema( {
             }
         ]
     },
+    location: {
+        longitude: Number,
+        latitude: Number
+    },
     storeId: {
         type: mongoose.ObjectId,
         required: true

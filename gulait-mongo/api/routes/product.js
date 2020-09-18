@@ -8,6 +8,7 @@ const grantSellerAccessToProduct = require( '../../util/auth/grantSellerAccessTo
 const grantSellerAccessToStore = require( '../../util/auth/grantSellerAccessToStore' );
 const validateCategories = require( '../../util/auth/validateCategories' );
 const createTags = require( '../../util/createTags' );
+const Store = require( '../models/Store' );
 
 /**
  * Creates a product
@@ -41,6 +42,7 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         crossSells: joi.array(),
         status: joi.string(),
         visibility: joi.object(),
+        location: joi.object(),
         storeId: joi.string(),
         userName: joi.string().required(),
         roles: joi.array().required(),
@@ -56,6 +58,19 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
         try {
             //validate categories
             const validationResults = await validateCategories( req.body.categories );
+            
+            let location = null;
+            //if products location has not been provided, get the location from the store it belongs to
+            if( req.body.location ){
+                location = req.body.location;
+            }else {
+                const store = await Store.findById( req.body.storeId );
+                const activeAddress = store.addresses.map( address => address.active == true );
+                location = {
+                    longitude: activeAddress.longitude,
+                    latitude: activeAddress.latitude
+                }
+            }
 
             if( validationResults.message.toLowerCase() == 'success' ){
                 product = new Product( {
@@ -83,6 +98,7 @@ router.post( '/create', authenticateAccessToken, grantSellerAccessToStore, async
                     crossSells: req.body.crossSells,
                     status: req.body.status,
                     visibility: req.body.visibility,
+                    location: location,
                     storeId: mongoose.Types.ObjectId( req.body.storeId )
                 } );
 
@@ -194,6 +210,7 @@ router.post( '/search', async ( req, res ) => {
        crossSells: joi.array(),
        status: joi.string(),
        visibility: joi.object(),
+       location: joi.object(),
        userName: joi.string().required(),
        roles: joi.array().required(),
        employingStores: joi.array(),
@@ -260,6 +277,21 @@ router.post( '/search', async ( req, res ) => {
                if( req.body.crossSells ) product.crossSells = req.body.crossSells;
                if( req.body.status ) product.status = req.body.status;
                if( req.body.visibility ) product.visibility = req.body.visibility;
+
+               let location = null;
+                //if products location has not been provided, get the location from the store it belongs to
+                if( req.body.location ){
+                    location = req.body.location;
+                }else {
+                    const store = await Store.findById( req.body.storeId );
+                    const activeAddress = store.addresses.map( address => address.active == true );
+                    location = {
+                        longitude: activeAddress.longitude,
+                        latitude: activeAddress.latitude
+                    }
+                }
+                product.location = location;
+                
                //save
                const updatedProduct = await product.save();
                if( updatedProduct ){
