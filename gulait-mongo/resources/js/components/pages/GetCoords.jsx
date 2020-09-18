@@ -19,9 +19,9 @@ const GetCoords = () => {
     const renderCoords = () => {
         if( location.latitude && location.longitude ){
             return (
-                <div className='p-5 pt-2' style={ { background: 'white', borderRadius: '.75rem', border: '.12rem solid black' } }>
+                <div className='p-5' style={ { background: 'white', borderRadius: '.75rem', border: '.12rem solid black' } }>
                     <p><strong>Latitude: </strong>{ location.latitude }</p>
-                    <p><strong>Longitude: </strong>{ location.longitude }</p>
+                    <p className='mb-0' ><strong>Longitude: </strong>{ location.longitude }</p>
                 </div>
             );
         } else {
