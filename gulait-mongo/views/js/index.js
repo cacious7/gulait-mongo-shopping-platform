@@ -62833,6 +62833,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _NavigationBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NavigationBar */ "./resources/js/components/NavigationBar.jsx");
 /* harmony import */ var _font_awesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../font-awesome */ "./resources/js/font-awesome.js");
+/* harmony import */ var _components_pages_GetCoords__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/pages/GetCoords */ "./resources/js/components/pages/GetCoords.jsx");
+
 
 
 
@@ -62844,6 +62846,9 @@ var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/signup",
     component: _pages_SignUp__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/getcoords",
+    component: _components_pages_GetCoords__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/home",
     component: _pages_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -63585,6 +63590,84 @@ var SignUpForm = function SignUpForm() {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/GetCoords.jsx":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/pages/GetCoords.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _util_getCoords__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../util/getCoords */ "./util/getCoords.js");
+/* harmony import */ var _util_getCoords__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_util_getCoords__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var GetCoords = function GetCoords() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    latitude: null,
+    longitude: null
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      location = _useState2[0],
+      setLocation = _useState2[1];
+  /**
+   * Get coordinates
+   */
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    _util_getCoords__WEBPACK_IMPORTED_MODULE_2___default()(setCoords);
+  }, []);
+
+  var setCoords = function setCoords(position) {
+    setLocation({
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    });
+  };
+
+  var renderCoords = function renderCoords() {
+    if (location.latitude && location.longitude) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-5 pt-2",
+        style: {
+          background: 'white',
+          borderRadius: '.75rem',
+          border: '.12rem solid black'
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Latitude: "), location.latitude), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Longitude: "), location.longitude));
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading...");
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+    className: "center-children mt-5"
+  }, renderCoords());
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (GetCoords);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/Home.jsx":
 /*!************************************************!*\
   !*** ./resources/js/components/pages/Home.jsx ***!
@@ -63606,6 +63689,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_getHostUrl__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../util/getHostUrl */ "./util/getHostUrl.js");
 /* harmony import */ var _util_getHostUrl__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_util_getHostUrl__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _Product__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Product */ "./resources/js/components/Product.jsx");
+/* harmony import */ var _util_getCoords__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../util/getCoords */ "./util/getCoords.js");
+/* harmony import */ var _util_getCoords__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_util_getCoords__WEBPACK_IMPORTED_MODULE_8__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -63632,6 +63717,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Home = function Home() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -63644,17 +63730,13 @@ var Home = function Home() {
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       location = _useState4[0],
-      setLocation = _useState4[1];
+      setLocation = _useState4[1]; //const [ getLocationTries, setGetLocationTries ] = useState( 0 );
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      getLocationTries = _useState6[0],
-      setGetLocationTries = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      searchMode = _useState8[0],
-      setSearchMode = _useState8[1];
+      searchMode = _useState6[0],
+      setSearchMode = _useState6[1];
 
   var _useQuery = Object(react_query__WEBPACK_IMPORTED_MODULE_5__["useQuery"])(searchString, function () {
     return getProducts();
@@ -63665,58 +63747,48 @@ var Home = function Home() {
       error = _useQuery.error;
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    getCoords();
-  }, []);
-  /**
-   * Get the user's coordinates
-   */
+    _util_getCoords__WEBPACK_IMPORTED_MODULE_8___default()(setCoords);
+  }, []); // /**
+  //  * Get the user's coordinates
+  //  */
+  // const getCoords = () => {
+  //     setGetLocationTries( prevValue => prevValue++ );
+  //     if( navigator.geolocation && getLocationTries < 3 ){
+  //         navigator.geolocation.getCurrentPosition( setCoords, getCoordsErrorHandling );
+  //     }
+  // }
 
-  var getCoords = function getCoords() {
-    setGetLocationTries(function (prevValue) {
-      return prevValue++;
-    });
-
-    if (navigator.geolocation && getLocationTries < 3) {
-      navigator.geolocation.getCurrentPosition(setCoords, getCoordsErrorHandling);
-    }
-  };
   /**
    * Set the cordingates state
    */
-
 
   var setCoords = function setCoords(position) {
     setLocation({
       longitude: position.coords.longitude,
       latitude: position.coords.latitude
     });
-  };
-  /**
-   * handle Errors when we try to get coords
-   */
+  }; // /**
+  //  * handle Errors when we try to get coords
+  //  */
+  // const getCoordsErrorHandling = ( error ) => {
+  //     switch( error.code ){
+  //         case error.PERMISSION_DENIED:
+  //             alert( `We wont be able to show you the store's location if you dont allow us to get your location. Please allow.` );
+  //             getCoords();
+  //             break;
+  //         case error.POSITION_UNAVAILABLE:
+  //             alert( `Your position is unavailable. This will prevent the map from showing.` );
+  //             break;
+  //         case error.TIMEOUT:
+  //             alert( `The request to get your location Timed out. We will try again.` );
+  //             getCoords();
+  //             break;
+  //         case error.UNKNOWN_ERROR:
+  //             alert( `Something went wrong when getting your location. Please contact support.` );
+  //             break;
+  //     }
+  // }
 
-
-  var getCoordsErrorHandling = function getCoordsErrorHandling(error) {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        alert("We wont be able to show you the store's location if you dont allow us to get your location. Please allow.");
-        getCoords();
-        break;
-
-      case error.POSITION_UNAVAILABLE:
-        alert("Your position is unavailable. This will prevent the map from showing.");
-        break;
-
-      case error.TIMEOUT:
-        alert("The request to get your location Timed out. We will try again.");
-        getCoords();
-        break;
-
-      case error.UNKNOWN_ERROR:
-        alert("Something went wrong when getting your location. Please contact support.");
-        break;
-    }
-  };
   /**
    * Searches for products whose name matches a search text
    * @return { Object } The search results
@@ -63938,6 +64010,56 @@ react_dom__WEBPACK_IMPORTED_MODULE_0___default.a.render( /*#__PURE__*/react__WEB
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./util/getCoords.js":
+/*!***************************!*\
+  !*** ./util/getCoords.js ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var getLocationTries = 0;
+/**
+ * Get the user's coordinates
+ */
+
+var getCoords = function getCoords(callback) {
+  getLocationTries++;
+
+  if (navigator.geolocation && getLocationTries < 3) {
+    navigator.geolocation.getCurrentPosition(callback, getCoordsErrorHandling);
+  }
+};
+/**
+ * handle Errors when we try to get coords
+ */
+
+
+var getCoordsErrorHandling = function getCoordsErrorHandling(error) {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      alert("We wont be able to show you the store's location if you dont allow us to get your location. Please allow.");
+      getCoords();
+      break;
+
+    case error.POSITION_UNAVAILABLE:
+      alert("Your position is unavailable. This will prevent the map from showing.");
+      break;
+
+    case error.TIMEOUT:
+      alert("The request to get your location Timed out. We will try again.");
+      getCoords();
+      break;
+
+    case error.UNKNOWN_ERROR:
+      alert("Something went wrong when getting your location. Please contact support.");
+      break;
+  }
+};
+
+module.exports = getCoords;
 
 /***/ }),
 

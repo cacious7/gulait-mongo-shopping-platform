@@ -5,11 +5,12 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import getHostUrl from '../../../../util/getHostUrl';
 import Product from '../Product';
+import getCoords from '../../../../util/getCoords';
 
 const Home = () => {
     const [ searchString, setSearchString ] = useState( '' );
     const [ location, setLocation ] = useState( { longitude: null, latitude: null } );
-    const [ getLocationTries, setGetLocationTries ] = useState( 0 );
+    //const [ getLocationTries, setGetLocationTries ] = useState( 0 );
     const [ searchMode, setSearchMode ] = useState( false );
     const { 
         status, 
@@ -18,18 +19,18 @@ const Home = () => {
         error
     } = useQuery( searchString, () => getProducts() );
 
-    useEffect( () => { getCoords() },[] );
+    useEffect( () => { getCoords( setCoords ) },[] );
 
-    /**
-     * Get the user's coordinates
-     */
-    const getCoords = () => {
+    // /**
+    //  * Get the user's coordinates
+    //  */
+    // const getCoords = () => {
 
-        setGetLocationTries( prevValue => prevValue++ );
-        if( navigator.geolocation && getLocationTries < 3 ){
-            navigator.geolocation.getCurrentPosition( setCoords, getCoordsErrorHandling );
-        }
-    }
+    //     setGetLocationTries( prevValue => prevValue++ );
+    //     if( navigator.geolocation && getLocationTries < 3 ){
+    //         navigator.geolocation.getCurrentPosition( setCoords, getCoordsErrorHandling );
+    //     }
+    // }
 
     /**
      * Set the cordingates state
@@ -38,27 +39,27 @@ const Home = () => {
         setLocation( { longitude: position.coords.longitude, latitude: position.coords.latitude } );
     }
 
-    /**
-     * handle Errors when we try to get coords
-     */
-    const getCoordsErrorHandling = ( error ) => {
-        switch( error.code ){
-            case error.PERMISSION_DENIED:
-                alert( `We wont be able to show you the store's location if you dont allow us to get your location. Please allow.` );
-                getCoords();
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert( `Your position is unavailable. This will prevent the map from showing.` );
-                break;
-            case error.TIMEOUT:
-                alert( `The request to get your location Timed out. We will try again.` );
-                getCoords();
-                break;
-            case error.UNKNOWN_ERROR:
-                alert( `Something went wrong when getting your location. Please contact support.` );
-                break;
-        }
-    }
+    // /**
+    //  * handle Errors when we try to get coords
+    //  */
+    // const getCoordsErrorHandling = ( error ) => {
+    //     switch( error.code ){
+    //         case error.PERMISSION_DENIED:
+    //             alert( `We wont be able to show you the store's location if you dont allow us to get your location. Please allow.` );
+    //             getCoords();
+    //             break;
+    //         case error.POSITION_UNAVAILABLE:
+    //             alert( `Your position is unavailable. This will prevent the map from showing.` );
+    //             break;
+    //         case error.TIMEOUT:
+    //             alert( `The request to get your location Timed out. We will try again.` );
+    //             getCoords();
+    //             break;
+    //         case error.UNKNOWN_ERROR:
+    //             alert( `Something went wrong when getting your location. Please contact support.` );
+    //             break;
+    //     }
+    // }
 
     /**
      * Searches for products whose name matches a search text
