@@ -9,7 +9,7 @@ const app = require( './app.js' );
 //an environment variable that contains 
 //a port number you can use, if not 
 //create a default 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 
 //create a server running on http
 //++a function can be passed to this 

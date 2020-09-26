@@ -64121,8 +64121,8 @@ module.exports = isObject;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\gulait-mongo\resources\js\index.jsx */"./resources/js/index.jsx");
-module.exports = __webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\gulait-mongo\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\resources\js\index.jsx */"./resources/js/index.jsx");
+module.exports = __webpack_require__(/*! E:\Gulait - git repository [product catalog]\Gulait Testing\gulait-mongo-shopping-platform\resources\sass\style.scss */"./resources/sass/style.scss");
 
 
 /***/ })
