@@ -6,7 +6,7 @@ let getLocationTries = 0;
 const getCoords = ( callback ) => {
     getLocationTries++;
     if( navigator.geolocation && getLocationTries < 3 ){
-        navigator.geolocation.getCurrentPosition( callback, getCoordsErrorHandling );
+        navigator.geolocation.getCurrentPosition( callback, getCoordsErrorHandling, { enableHighAccuracy: true } );
     }
 }
 

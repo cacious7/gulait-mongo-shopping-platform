@@ -48,13 +48,16 @@ const Product = ( props ) => {
 
     const displaySellerDetails = () => {
         const store = data.data.data;
+
+        console.log( 'product coords = ', props.product.location );
+
         return ( 
             <>
                 <p><strong>Store name:</strong> { store.name }</p>
                 <p><strong>Email:</strong> { store.email }</p>
                 <p><strong>Phone:</strong> +{ store.phone.countryCode } { store.phone.number }</p>
                 <EmbededGoogleMap   
-                    location={ { longitude: props.location.longitude, latitude: props.location.latitude } } 
+                    location={ props.location } 
                     className='modal-google-map' 
                 />
             </>

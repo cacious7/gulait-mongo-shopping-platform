@@ -62899,6 +62899,7 @@ var EmbededGoogleMap = function EmbededGoogleMap(props) {
       url = _useState4[0],
       setUrl = _useState4[1];
 
+  console.log('Generated coords = ', props.location);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("iframe", {
     width: props.width ? props.width : '100%',
     height: props.height ? props.height : '100%',
@@ -63203,11 +63204,9 @@ var Product = function Product(props) {
 
   var displaySellerDetails = function displaySellerDetails() {
     var store = data.data.data;
+    console.log('product coords = ', props.product.location);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Store name:"), " ", store.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Email:"), " ", store.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Phone:"), " +", store.phone.countryCode, " ", store.phone.number), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_EmbededGoogleMap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      location: {
-        longitude: props.location.longitude,
-        latitude: props.location.latitude
-      },
+      location: props.location,
       className: "modal-google-map"
     }));
   };
@@ -64031,7 +64030,9 @@ var getCoords = function getCoords(callback) {
   getLocationTries++;
 
   if (navigator.geolocation && getLocationTries < 3) {
-    navigator.geolocation.getCurrentPosition(callback, getCoordsErrorHandling);
+    navigator.geolocation.getCurrentPosition(callback, getCoordsErrorHandling, {
+      enableHighAccuracy: true
+    });
   }
 };
 /**

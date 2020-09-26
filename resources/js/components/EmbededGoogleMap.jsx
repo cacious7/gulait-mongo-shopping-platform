@@ -6,6 +6,9 @@ const EmbededGoogleMap = ( props ) => {
     const [ url, setUrl ] = useState( 
         `https://www.google.com/maps/embed/v1/place?key=${ apiKey } &q=${ props.location.latitude },${ props.location.longitude }`
     );
+
+    console.log( 'Generated coords = ', props.location );
+
     return (
         <iframe
             width={ props.width ? props.width : '100%' }
