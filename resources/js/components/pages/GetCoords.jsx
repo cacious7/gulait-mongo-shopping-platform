@@ -27,7 +27,7 @@ const GetCoords = () => {
                         <p className='mb-0' ><strong>Longitude: </strong>{ location.longitude }</p>
                     </div>
                     <br/>
-                    <Card>
+                    <Card style={ { width: '100%' } } >
                         <Card.Body>
                             <EmbededGoogleMap style={ { height: '90vh'} } location={ location } className='modal-google-map' />
                         </Card.Body>

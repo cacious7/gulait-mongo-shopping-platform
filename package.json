@@ -4,7 +4,8 @@
   "description": "creation of a gulait platform that uses mongo db",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js --config nodemon.json",
+    "start": "node server.js",
+    "start-dev": "nodemon server.js --config nodemon.json",
     "flr": "fast-live-reload views -s http://localhost:3000",
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
