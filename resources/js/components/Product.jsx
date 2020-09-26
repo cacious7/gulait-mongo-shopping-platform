@@ -57,7 +57,7 @@ const Product = ( props ) => {
                 <p><strong>Email:</strong> { store.email }</p>
                 <p><strong>Phone:</strong> +{ store.phone.countryCode } { store.phone.number }</p>
                 <EmbededGoogleMap   
-                    location={ props.location } 
+                    location={ props.product.location } 
                     className='modal-google-map' 
                 />
             </>
