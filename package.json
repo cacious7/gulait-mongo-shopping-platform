@@ -45,7 +45,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",
     "cross-env": "^7.0.2",
-    "fast-live-reload": "^2.8.2",
+    "fast-live-reload": "^2.10.0",
     "nodemon": "^2.0.4",
     "resolve-url-loader": "^3.1.0",
     "sass": "^1.26.10",
